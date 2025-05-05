@@ -1,0 +1,109 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Optimizing Deep Learning Convolutions for Embedded Processors</title>
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+  <link rel="stylesheet" href="project.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/prismjs@1.24.1/themes/prism.css">
+  <link rel="stylesheet" href="admon.css">
+  <!-- Google's Material Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css" rel="stylesheet">
+
+
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">Enrique Galvez</a>
+      <ul class="navbar-links">
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#projects">Projects</a></li>
+      </ul>
+    </div>
+  </nav>
+  
+  <!-- Project Content -->
+  <section class="project-content-section">
+    <div class="project-container">
+      <div id="project-content" class="markdown-body">
+        <h1>Optimizing Deep Learning Convolutions for Embedded Processors</h1>
+<p>During my last year of Master's degree, I worked as a research intern for 6 weeks at <a href="https://www.lip6.fr/">LIP6</a> (Paris). I was intern in the ALSOC team, which works focus on embedded systems and designing efficient applications with good architecture-algorithm adequation.</p>
+<p>The aim of my work was to study and compare State-of-the-Art approaches for computing deep learning convolutions. In particular, my work focused on popular embedded platforms representative of the market such as NVIDIA Jetson (Orin and Xavier), Mercury EM780 and Apple's M1 processor.</p>
+<h2>The Convolution Layer</h2>
+<p>Convolutionnal Neural Networks (CNNs) has shown efficiency in computer vision tasks and are, in 2024, still holding State-of-the-Art accuracy for object detection tasks without using additionnal training data. Deep learning convolutions are the most important operation of these networks, so designing algorithms for high-performance convolutions has been widely studied in State-of-the-Art and several approaches were suggested.</p>
+<p>Deep learning convolutions are computed on multi-dimensionnal tensors with the dimensions <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>M</mi><mi>B</mi><mo>×</mo><mi>C</mi><mo>×</mo><mi>H</mi><mo>×</mo><mi>W</mi></mrow><annotation encoding="application/x-tex">MB \times C \times H \times W</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.76666em;vertical-align:-0.08333em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.10903em;">M</span><span class="mord mathit" style="margin-right:0.05017em;">B</span><span class="mbin">×</span><span class="mord mathit" style="margin-right:0.07153em;">C</span><span class="mbin">×</span><span class="mord mathit" style="margin-right:0.08125em;">H</span><span class="mbin">×</span><span class="mord mathit" style="margin-right:0.13889em;">W</span></span></span></span> representing:</p>
+<ul>
+<li><strong>H</strong> and <strong>W</strong> represents height and width of an image (OH and OW are for outputs tensor, IH and IW for inputs tensor)</li>
+<li><strong>C</strong> represents channels of an image, for the first layer, c corresponds to the rgb color of an image, this dimension usually increases after each convolution layer of a CNN</li>
+<li><strong>MB</strong> or <strong>n</strong> is used for batching inputs and achieving better parallelism (for a streaming application, <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>M</mi><mi>B</mi><mo>≤</mo><mn>4</mn></mrow><annotation encoding="application/x-tex">MB\leq4</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.8193em;vertical-align:-0.13597em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.10903em;">M</span><span class="mord mathit" style="margin-right:0.05017em;">B</span><span class="mrel">≤</span><span class="mord mathrm">4</span></span></span></span>)</li>
+</ul>
+<p>By using the previous notations, a basic convolution with no stride, padding or dilation can be described by the following formula:</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi><mi>s</mi><mi>t</mi><mo>(</mo><mi>n</mi><mo separator="true">,</mo><mi>o</mi><mi>c</mi><mo separator="true">,</mo><mi>o</mi><mi>h</mi><mo separator="true">,</mo><mi>o</mi><mi>w</mi><mo>)</mo><mo>=</mo><msubsup><mo>∑</mo><mrow><mi>i</mi><mi>c</mi><mo>=</mo><mn>0</mn></mrow><mrow><mi>I</mi><mi>C</mi><mo>−</mo><mn>1</mn></mrow></msubsup><msubsup><mo>∑</mo><mrow><mi>k</mi><mi>h</mi><mo>=</mo><mn>0</mn></mrow><mrow><mi>K</mi><mi>H</mi><mo>−</mo><mn>1</mn></mrow></msubsup><msubsup><mo>∑</mo><mrow><mi>k</mi><mi>w</mi><mo>=</mo><mn>0</mn></mrow><mrow><mi>K</mi><mi>W</mi><mo>−</mo><mn>1</mn></mrow></msubsup><mi>s</mi><mi>r</mi><mi>c</mi><mo>(</mo><mi>n</mi><mo separator="true">,</mo><mi>i</mi><mi>c</mi><mo separator="true">,</mo><mi>o</mi><mi>h</mi><mo>+</mo><mi>k</mi><mi>h</mi><mo separator="true">,</mo><mi>o</mi><mi>w</mi><mo>+</mo><mi>k</mi><mi>w</mi><mo>)</mo><mo>⋅</mo><mi>w</mi><mi>e</mi><mi>i</mi><mi>g</mi><mi>h</mi><mi>t</mi><mi>s</mi><mo>(</mo><mi>o</mi><mi>c</mi><mo separator="true">,</mo><mi>i</mi><mi>c</mi><mo separator="true">,</mo><mi>k</mi><mi>h</mi><mo separator="true">,</mo><mi>k</mi><mi>w</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">dst(n, oc, oh, ow) = \sum_{ic=0}^{IC-1}\sum_{kh=0}^{KH-1}\sum_{kw=0}^{KW-1} src(n, ic, oh + kh, ow + kw ) \cdot weights(oc, ic, kh, kw)
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:1.8283360000000004em;"></span><span class="strut bottom" style="height:3.1304490000000005em;vertical-align:-1.302113em;"></span><span class="base displaystyle textstyle uncramped"><span class="mord mathit">d</span><span class="mord mathit">s</span><span class="mord mathit">t</span><span class="mopen">(</span><span class="mord mathit">n</span><span class="mpunct">,</span><span class="mord mathit">o</span><span class="mord mathit">c</span><span class="mpunct">,</span><span class="mord mathit">o</span><span class="mord mathit">h</span><span class="mpunct">,</span><span class="mord mathit">o</span><span class="mord mathit" style="margin-right:0.02691em;">w</span><span class="mclose">)</span><span class="mrel">=</span><span class="mop op-limits"><span class="vlist"><span style="top:1.1776689999999999em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord scriptstyle cramped"><span class="mord mathit">i</span><span class="mord mathit">c</span><span class="mrel">=</span><span class="mord mathrm">0</span></span></span></span><span style="top:-0.000005000000000143778em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span><span class="op-symbol large-op mop">∑</span></span></span><span style="top:-1.2500050000000003em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord scriptstyle uncramped"><span class="mord mathit" style="margin-right:0.07847em;">I</span><span class="mord mathit" style="margin-right:0.07153em;">C</span><span class="mbin">−</span><span class="mord mathrm">1</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mop op-limits"><span class="vlist"><span style="top:1.202113em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord scriptstyle cramped"><span class="mord mathit" style="margin-right:0.03148em;">k</span><span class="mord mathit">h</span><span class="mrel">=</span><span class="mord mathrm">0</span></span></span></span><span style="top:-0.000005000000000032756em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span><span class="op-symbol large-op mop">∑</span></span></span><span style="top:-1.250005em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord scriptstyle uncramped"><span class="mord mathit" style="margin-right:0.07153em;">K</span><span class="mord mathit" style="margin-right:0.08125em;">H</span><span class="mbin">−</span><span class="mord mathrm">1</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mop op-limits"><span class="vlist"><span style="top:1.202113em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord scriptstyle cramped"><span class="mord mathit" style="margin-right:0.03148em;">k</span><span class="mord mathit" style="margin-right:0.02691em;">w</span><span class="mrel">=</span><span class="mord mathrm">0</span></span></span></span><span style="top:-0.000005000000000032756em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span><span class="op-symbol large-op mop">∑</span></span></span><span style="top:-1.250005em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord scriptstyle uncramped"><span class="mord mathit" style="margin-right:0.07153em;">K</span><span class="mord mathit" style="margin-right:0.13889em;">W</span><span class="mbin">−</span><span class="mord mathrm">1</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mord mathit">s</span><span class="mord mathit" style="margin-right:0.02778em;">r</span><span class="mord mathit">c</span><span class="mopen">(</span><span class="mord mathit">n</span><span class="mpunct">,</span><span class="mord mathit">i</span><span class="mord mathit">c</span><span class="mpunct">,</span><span class="mord mathit">o</span><span class="mord mathit">h</span><span class="mbin">+</span><span class="mord mathit" style="margin-right:0.03148em;">k</span><span class="mord mathit">h</span><span class="mpunct">,</span><span class="mord mathit">o</span><span class="mord mathit" style="margin-right:0.02691em;">w</span><span class="mbin">+</span><span class="mord mathit" style="margin-right:0.03148em;">k</span><span class="mord mathit" style="margin-right:0.02691em;">w</span><span class="mclose">)</span><span class="mbin">⋅</span><span class="mord mathit" style="margin-right:0.02691em;">w</span><span class="mord mathit">e</span><span class="mord mathit">i</span><span class="mord mathit" style="margin-right:0.03588em;">g</span><span class="mord mathit">h</span><span class="mord mathit">t</span><span class="mord mathit">s</span><span class="mopen">(</span><span class="mord mathit">o</span><span class="mord mathit">c</span><span class="mpunct">,</span><span class="mord mathit">i</span><span class="mord mathit">c</span><span class="mpunct">,</span><span class="mord mathit" style="margin-right:0.03148em;">k</span><span class="mord mathit">h</span><span class="mpunct">,</span><span class="mord mathit" style="margin-right:0.03148em;">k</span><span class="mord mathit" style="margin-right:0.02691em;">w</span><span class="mclose">)</span></span></span></span></span></p>
+<p>The output of a convolution is a reduction through the dimensions IC, KH and KW of the products between overlapping parts of src and weights. This operation can be visualized in the following picture.</p>
+<p><img src="../assets/m2/convolution.png" alt="conv"></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Deep learning convolutions are multi-dimensionnal convolutions with filters (weights) that are updated at each backward pass.</p>
+</div>
+<h2>High-performance convolutions</h2>
+<p>State-of-the-Art provides several strategies for computing high-performance convolutions, but each paper claims that its approach is the best. Among SOTA strategies, we chose to study the following 4 approaches.</p>
+<p><strong>Direct methods</strong> references to all the methods that chose to implement the convolution operator following its mathematical definition, but with some high-level optimizations. This approach has the advantage to be straight forward and do not involve any memory overhead or data pre-processing.</p>
+<p><img src="../assets/m2/direct.png" alt="direct"></p>
+<p><strong>Explicit GEMM methods (im2row)</strong> references to all the methods that uses an intermediate buffer in order to transform the convolution into a GEMM computation. These methods has the advantage to benefit from hardware-optimized GEMM implementations but involve a memory overhead to compute the intermediate buffer.</p>
+<p><img src="../assets/m2/im2row.png" alt="im2row"></p>
+<p><strong>Implicit GEMM methods</strong> are relatively similar to explicit GEMM methods, but the intermediate buffer is never materialized and specific low-level kernels are used to speed-up the process. This design is the most used in GPUs, where efficient atomic kernels can be designed.</p>
+<p><strong>Winograd's method</strong> is based on Winograd's work on minimal filtering. It works in a similar way than Strassen's algorithm for matrix-multiplication: arithmetic intensity is reduced by re-formulating mathematical computations. In the implementation I benchmarked, the number of multiplications is divided by 2.25 compared to a naive implementation.</p>
+<h2>A performance comparison of SOTA convolutions</h2>
+<p>The main purpose of my work was to provide a fair comparison between previous approaches. In this context, I implemented previous strategies in a fork of <a href="https://github.com/uxlfoundation/oneDNN">OneDNN</a> and I benchmarked the implementations with convolution setups corresponding to real-world networks thanks to benchDNN.</p>
+<p>A first observation I made is that <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>3</mn><mo>×</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">3\times 3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.64444em;"></span><span class="strut bottom" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="base textstyle uncramped"><span class="mord mathrm">3</span><span class="mbin">×</span><span class="mord mathrm">3</span></span></span></span> convolutions have a significant impact in the performance of almost any CNN. (see figure below) Indeed, most of the networks use these convolutions and they represent a major part of the compute time.</p>
+<p><img src="../assets/m2/bench.png" alt="bench"></p>
+<p>Another observation is that the implementations <strong>onednn</strong> (implicit GEMM) and <strong>winograd</strong> offer the best performance results. Moreover, <strong>im2row</strong> (explicit GEMM) is slightly slower than <strong>onednn</strong> and <strong>direct</strong> is almost always the slower implementation because its performance follows the size of the convolution inputs.</p>
+<p><img src="../assets/m2/results.png" alt="results"></p>
+<p>More details about my work, includin the experiments and explanations about the implementations are available in my <a href="contents/m2-report.pdf">internship report</a>.</p>
+<h2>Additionnal resources</h2>
+<p>If you want to learn more about my work, here are some useful resources:</p>
+<ul>
+<li><a href="contents/m2-report.pdf">Internship Report</a></li>
+<li><a href="contents/m2-presentation.pdf">Slides</a></li>
+<li><a href="https://uxlfoundation.github.io/oneDNN/">OneDNN Documentation</a></li>
+</ul>
+<h2>Special thanks</h2>
+<p>I am thankful to Alix Munier and Adrien Cassagne giving me the opportunity to work on such an interesting subject under their supervision.</p>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="quick-nav">
+    <a href="index.html#projects" class="quick-nav-button">← Back to Projects</a>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="bot-container">
+      <p>&copy; 2023 Enrique Galvez. All rights reserved.</p>
+      <div class="social-icons">
+        <a href="https://www.linkedin.com/in/enrique-galvez-b25817248" target="_blank">LinkedIn</a>
+        <a href="https://github.com/EnriqueGlv" target="_blank">GitHub</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script>
+  <script>
+    window.addEventListener("DOMContentLoaded", () => {
+      new ClipboardJS(".markdown-it-code-copy");
+    });
+    </script>
+</body>
+</html>
+    

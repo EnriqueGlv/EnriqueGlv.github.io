@@ -1,0 +1,213 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DrawCaml: an Object-Oriented graphical module for OCaml</title>
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+  <link rel="stylesheet" href="project.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/prismjs@1.24.1/themes/prism.css">
+  <link rel="stylesheet" href="admon.css">
+  <!-- Google's Material Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css" rel="stylesheet">
+
+
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">Enrique Galvez</a>
+      <ul class="navbar-links">
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#projects">Projects</a></li>
+      </ul>
+    </div>
+  </nav>
+  
+  <!-- Project Content -->
+  <section class="project-content-section">
+    <div class="project-container">
+      <div id="project-content" class="markdown-body">
+        <h1>DrawCaml: an Object-Oriented graphical module for OCaml</h1>
+<p>Drawcaml is an Object Oriented graphical library for the programming language OCaml. This project was made during the fist year of Master's degree at ENS de Lyon for the &quot;Integrated project&quot; class and obtained the final grade of 19/20.</p>
+<p>DrawCaml was made by a team of 4 students composed of Adrien Obrecht, Damien Lesens, Killian Barbé and myself.</p>
+<h2>Why DrawCaml ?</h2>
+<p>In theoretical computer science, OCaml is a very popular programming language thanks to its functionnal paradigm optimized for recursion as well as its static typing that makes it robust for critical applications. However, Ocaml programs are mainly used as compiled libraries called from classical languages such as C/C++ or Java. For this reason, existing graphical libraries for OCaml are pretty limited and do not offer a user-friendly experience such as most modern graphical modules (ImGUI, Java.Swing, Flutter...).</p>
+<p>DrawCaml was made to answer the need for a library that quickly allows to create a graphical interface from an OCaml program, to vizualise results of an experiment for example. Its difference with existing frameworks lays in the use of Object-Oriented Progamming allowed by OCaml to create and use graphical objects. This OOP approach is similar to most of the modern graphical modules proposed for other languages.</p>
+<div class="admonition info">
+<p class="admonition-title">In Short</p>
+<p>We created DrawCaml to offer OCaml a user-friendly graphical module that can be used to create graphical programs directly from OCaml</p>
+</div>
+<h2>Creating Graphical Objects</h2>
+<p>The main motivation of DrawCaml is to make the creation of graphical applications easier when using OCaml. In this perspective, we designed graphical classes which can be instanciated to create a graphical window and its elements.</p>
+<p>As an example, a window can be created by using the following code:</p>
+
+<div style="position: relative">
+	<pre class="language-ocaml"><code class="language-ocaml"><span class="token keyword">let</span> window <span class="token operator">=</span> <span class="token keyword">new</span> DrawCaml<span class="token punctuation">.</span>dwindow <span class="token label property">~title</span><span class="token punctuation">:</span><span class="token string">"Test Window"</span> <span class="token label property">~pos</span><span class="token punctuation">:</span><span class="token punctuation">(</span><span class="token number">50</span><span class="token punctuation">,</span><span class="token number">50</span><span class="token punctuation">)</span> <span class="token label property">~size</span><span class="token punctuation">:</span><span class="token punctuation">(</span><span class="token number">500</span><span class="token punctuation">,</span><span class="token number">500</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;;</span>
+window<span class="token punctuation">#</span>waitForClose <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;;</span>
+</code></pre>
+
+	<button class="markdown-it-code-copy " data-clipboard-text="let window = new DrawCaml.dwindow ~title:&quot;Test Window&quot; ~pos:(50,50) ~size:(500,500) ();;
+window#waitForClose ();;
+" style="position: absolute; top: 7.5px; right: 6px; cursor: pointer; outline: none;" title="Copy">
+		<span style="font-size: 16px; opacity: 0.4;" class="mdi mdi-content-copy"></span>
+	</button>
+</div>
+<p>A window can stack elements recursively in containers, which should be stacked in the main container of the window. Containers allow the stacking of elements using predefined layouts, such as GridLayout (elements displayed in a grid) and FloatLayout (elements displayed using absolute position).</p>
+<p>To give a more complete example, the following code:</p>
+
+<div style="position: relative">
+	<pre class="language-ocaml"><code class="language-ocaml"><span class="token comment">(* create the window *)</span>
+<span class="token keyword">let</span> window <span class="token operator">=</span> <span class="token keyword">new</span> DrawCaml<span class="token punctuation">.</span>dwindow <span class="token label property">~title</span><span class="token punctuation">:</span><span class="token string">"Test Window"</span> <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;;</span>
+
+<span class="token comment">(* set the window's container to yellow and with a FloatLayout *)</span>
+<span class="token keyword">let</span> main_container <span class="token operator">=</span> <span class="token keyword">new</span> DrawCaml<span class="token punctuation">.</span>dcontainer <span class="token label property">~layout</span><span class="token punctuation">:</span>FloatLayout <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;;</span>
+main_container<span class="token punctuation">#</span>setBgColor<span class="token punctuation">(</span><span class="token string">"yellow"</span><span class="token punctuation">)</span><span class="token punctuation">;;</span>
+window<span class="token punctuation">#</span>setContainer main_container<span class="token punctuation">;</span>
+
+<span class="token comment">(* create a green container with Grid Layout and add it to the Window *)</span>
+<span class="token keyword">let</span> grid_container <span class="token operator">=</span> <span class="token keyword">new</span> DrawCaml<span class="token punctuation">.</span>dcontainer <span class="token label property">~layout</span><span class="token punctuation">:</span>GridLayout <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;;</span>
+grid_container<span class="token punctuation">#</span>setBgColor<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">255</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;;</span>
+
+<span class="token comment">(* add a purple container in the position (1,2) of the grid *)</span>
+<span class="token keyword">let</span> container1 <span class="token operator">=</span> <span class="token keyword">new</span> DrawCaml<span class="token punctuation">.</span>dcontainer <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;;</span>
+container1<span class="token punctuation">#</span>setBgColor <span class="token punctuation">(</span><span class="token string">"purple"</span><span class="token punctuation">)</span><span class="token punctuation">;;</span>
+grid_container<span class="token punctuation">#</span>addElem container1 <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;;</span>
+
+<span class="token comment">(* add a label at position (0,3) *)</span>
+<span class="token keyword">let</span> testLabel <span class="token operator">=</span> <span class="token keyword">new</span> DrawCaml<span class="token punctuation">.</span>dlabel <span class="token label property">~text</span><span class="token punctuation">:</span><span class="token string">"testlabel"</span> <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;;</span>
+testLabel<span class="token punctuation">#</span>setColor <span class="token string">"blue"</span><span class="token punctuation">;;</span>
+grid_container<span class="token punctuation">#</span>add testLabel <span class="token label property">~pos</span><span class="token punctuation">:</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;;</span>
+
+<span class="token comment">(* add other elements *)</span>
+<span class="token operator">..</span><span class="token punctuation">.</span>
+
+<span class="token comment">(* keep the window open *)</span>
+DrawCaml<span class="token punctuation">.</span>waitForClose<span class="token punctuation">(</span>window<span class="token punctuation">)</span><span class="token punctuation">;;</span>   
+</code></pre>
+
+	<button class="markdown-it-code-copy " data-clipboard-text="(* create the window *)
+let window = new DrawCaml.dwindow ~title:&quot;Test Window&quot; ();;
+
+(* set the window&apos;s container to yellow and with a FloatLayout *)
+let main_container = new DrawCaml.dcontainer ~layout:FloatLayout ();;
+main_container#setBgColor(&quot;yellow&quot;);;
+window#setContainer main_container;
+
+(* create a green container with Grid Layout and add it to the Window *)
+let grid_container = new DrawCaml.dcontainer ~layout:GridLayout ();;
+grid_container#setBgColor(0,255,0);;
+
+(* add a purple container in the position (1,2) of the grid *)
+let container1 = new DrawCaml.dcontainer ();;
+container1#setBgColor (&quot;purple&quot;);;
+grid_container#addElem container1 (1, 2);;
+
+(* add a label at position (0,3) *)
+let testLabel = new DrawCaml.dlabel ~text:&quot;testlabel&quot; ();;
+testLabel#setColor &quot;blue&quot;;;
+grid_container#add testLabel ~pos:(0,3) ();;
+
+(* add other elements *)
+...
+
+(* keep the window open *)
+DrawCaml.waitForClose(window);;   
+" style="position: absolute; top: 7.5px; right: 6px; cursor: pointer; outline: none;" title="Copy">
+		<span style="font-size: 16px; opacity: 0.4;" class="mdi mdi-content-copy"></span>
+	</button>
+</div>
+<p>Creates the following result:</p>
+<p><img src="../assets/drawcaml/example.png" alt="drawcaml example"></p>
+<h2>Multi-threaded architecture</h2>
+<p>DrawCaml is built as a multi-threaded application, in order to allow the operating system to schedule the application. To be more specific, our design is based on 2 threads: one for the OCaml application and one for displaying the window using X11 code (C++). In order to allow Inter-Process Communication (IPC) between our 2 threads, we designed a protocol based on the queueing OCaml calls, wrapped in a C++ instance of the class <code>Action</code>.</p>
+<p>Our designed can be described by the following picture:</p>
+<p><img src="../assets/drawcaml/ipc.png" alt="IPC"></p>
+<p>As described in the picture, IPC system allows us to send requests from OCaml (creating objects, requesting parameters, requesting objects) and get answers from C++ thread.</p>
+<h2>Event Handling</h2>
+<p>In order to support dynamic applications, handling user events such as keyboard and mouse inputs is necessary.</p>
+<p>Using DrawCaml, an event handler can be defined using a function such as:</p>
+
+<div style="position: relative">
+	<pre class="language-ocaml"><code class="language-ocaml"><span class="token keyword">let</span> window <span class="token operator">=</span> <span class="token keyword">new</span> DrawCaml<span class="token punctuation">.</span>dwindow <span class="token label property">~title</span><span class="token punctuation">:</span><span class="token string">"Test Window"</span> <span class="token label property">~pos</span><span class="token punctuation">:</span><span class="token punctuation">(</span><span class="token number">50</span><span class="token punctuation">,</span><span class="token number">50</span><span class="token punctuation">)</span> <span class="token label property">~size</span><span class="token punctuation">:</span><span class="token punctuation">(</span><span class="token number">500</span><span class="token punctuation">,</span><span class="token number">500</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;;</span>
+
+<span class="token keyword">let</span> event_handler event <span class="token operator">=</span>
+    <span class="token keyword">match</span> event <span class="token keyword">with</span>
+        <span class="token operator">|</span> DrawCaml<span class="token punctuation">.</span>KeyPressed<span class="token punctuation">(</span>Right<span class="token punctuation">)</span>   <span class="token operator">-></span> Printf<span class="token punctuation">.</span>printf <span class="token string">"Right key got pressed\n%!"</span><span class="token punctuation">;</span>
+        <span class="token operator">|</span> DrawCaml<span class="token punctuation">.</span>KeyReleased<span class="token punctuation">(</span><span class="token punctuation">_</span><span class="token punctuation">)</span>      <span class="token operator">-></span> Printf<span class="token punctuation">.</span>printf <span class="token string">"A key was released\n%!"</span><span class="token punctuation">;</span>
+        <span class="token operator">|</span> DrawCaml<span class="token punctuation">.</span>MousePressed<span class="token punctuation">(</span>x<span class="token punctuation">,</span>y<span class="token punctuation">,</span><span class="token punctuation">_</span><span class="token punctuation">)</span> <span class="token operator">-></span> Printf<span class="token punctuation">.</span>printf <span class="token string">"The mouse was pressed at position %d %d\n%!"</span> x y<span class="token punctuation">;</span>
+        <span class="token operator">|</span> <span class="token punctuation">_</span> <span class="token operator">-></span> <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">;;</span>
+window<span class="token punctuation">#</span>setEventHandler event_handler<span class="token punctuation">;;</span>
+ 
+ 
+<span class="token keyword">while</span> window<span class="token punctuation">#</span>notClosed <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">do</span> 
+    Unix<span class="token punctuation">.</span>sleep <span class="token number">1</span><span class="token punctuation">;</span>
+    Printf<span class="token punctuation">.</span>printf <span class="token string">"Window is still open\n%!"</span><span class="token punctuation">;</span>
+<span class="token keyword">done</span><span class="token punctuation">;;</span>
+</code></pre>
+
+	<button class="markdown-it-code-copy " data-clipboard-text="let window = new DrawCaml.dwindow ~title:&quot;Test Window&quot; ~pos:(50,50) ~size:(500,500) ();;
+
+let event_handler event =
+    match event with
+        | DrawCaml.KeyPressed(Right)   -> Printf.printf &quot;Right key got pressed\n%!&quot;;
+        | DrawCaml.KeyReleased(_)      -> Printf.printf &quot;A key was released\n%!&quot;;
+        | DrawCaml.MousePressed(x,y,_) -> Printf.printf &quot;The mouse was pressed at position %d %d\n%!&quot; x y;
+        | _ -> ();
+;;
+window#setEventHandler event_handler;;
+ 
+ 
+while window#notClosed () do 
+    Unix.sleep 1;
+    Printf.printf &quot;Window is still open\n%!&quot;;
+done;;
+" style="position: absolute; top: 7.5px; right: 6px; cursor: pointer; outline: none;" title="Copy">
+		<span style="font-size: 16px; opacity: 0.4;" class="mdi mdi-content-copy"></span>
+	</button>
+</div>
+<p>Under the hood, the OCaml function is given to the C++ thread which listens the events and when an event is caught, the function is executed by the C++ thread.</p>
+<p><img src="../assets/drawcaml/eventhandler.png" alt="event handler"></p>
+<h2>Going Further</h2>
+<p>If you want to learn more about DrawCaml, you may take a look at the following ressources:</p>
+<ul>
+<li>The <a href="https://github.com/DrawCaml/DrawCaml">github repository</a></li>
+<li>The <a href="https://drawcaml.github.io/DrawCaml/">documentation</a></li>
+<li>A <a href="https://drawcaml.github.io/DrawCaml/cpp/html/md_lib_Example_Doc.html">tutorial</a> (also available in the documentation)</li>
+</ul>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="quick-nav">
+    <a href="index.html#projects" class="quick-nav-button">← Back to Projects</a>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="bot-container">
+      <p>&copy; 2023 Enrique Galvez. All rights reserved.</p>
+      <div class="social-icons">
+        <a href="https://www.linkedin.com/in/enrique-galvez-b25817248" target="_blank">LinkedIn</a>
+        <a href="https://github.com/EnriqueGlv" target="_blank">GitHub</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script>
+  <script>
+    window.addEventListener("DOMContentLoaded", () => {
+      new ClipboardJS(".markdown-it-code-copy");
+    });
+    </script>
+</body>
+</html>
+    

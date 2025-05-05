@@ -1,0 +1,123 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Personal Website - Enrique Galvez</title>
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">Enrique Galvez</a>
+      <ul class="navbar-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- About Section -->
+  <section class="about-section" id="about">
+    <div class="about-container">
+      <img src="assets/photo.jpg" alt="Enrique" class="profile-pic">
+      <div class="atext">
+        <h2>About Me</h2>
+        <p>I am a computer science student at École Normale Supérieure (ENS) de Lyon. I graduated in 2024 from the master <a href="https://informatique.ens-lyon.fr/en/academic-programs/master/master-computer-science"  target="_blank">"Informatique: Concepts et Applications"</a> and I am now preparing a future PHD by doing research internships for my last year at ENS de Lyon (see <a href="https://informatique.ens-lyon.fr/fr/formations/projet-long-de-recherche" target="_blank">PLR year</a>). </p>
+        <p>My research interests are relative to architecture-algorithm adequation in the context of complex applications (in particular deep learning algorithms) running on modern systems (HPC environments or embedded systems) with respect to certain constraints such as energy consumption, speed or throughput.</p>
+        <a class="cv-button" href="contents/CV.pdf" target="_blank" download="enrique-galvez-CV">Download my resume</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section class="projects-section" id="projects">
+    <div class="container">
+      <h2>Projects</h2>
+      <div class="proj-container" id="project-list">
+        
+    <div class="project-card" onclick="window.location.href='inria.html'">
+      <img src="assets/inria-img.png" alt="Efficient Scheduling of Transformers using StarPU" class="project-img">
+      <div class="card-body">
+        <h5>Efficient Scheduling of Transformers using StarPU</h5>
+        <p></p>For the first half of my last year at ENS de Lyon, I worked as a research intern at Inria Bordeaux in the TOPAL team (HPC).</p> <p>By using the framework NNTile, I studied how to efficiently schedule the elementary operations of the attention layer of transformers.</p></p>
+        
+            <a class="button" href="contents/inria-report.pdf" download="Galvez-attention-scheduling-report.pdf" onclick="event.stopPropagation();">Report</a>
+            
+      </div>
+    </div>
+    
+    <div class="project-card" onclick="window.location.href='m2.html'">
+      <img src="assets/m2-img.png" alt="Optimizing Deep Learning Convolutions for Embedded Processors" class="project-img">
+      <div class="card-body">
+        <h5>Optimizing Deep Learning Convolutions for Embedded Processors</h5>
+        <p><p>During my second year of Master's degree, I worked as a research intern at LIP6 (Paris) for 5 months in the ALSOC team (embedded systems). </p><p>During this internship, I studied time and performance efficiency of the 4 most used methods for computing deep learning convolutions.</p></p>
+        
+            <a class="button" href="contents/m2-report.pdf" download="Galvez-convolutions-report.pdf" onclick="event.stopPropagation();">Report</a>
+            
+            <a class="button" href="contents/m2-presentation.pdf" download="Galvez-convolution-slides.pdf" onclick="event.stopPropagation();">Slides</a>
+            
+      </div>
+    </div>
+    
+    <div class="project-card" onclick="window.location.href='m1.html'">
+      <img src="assets/m1-img.png" alt="Efficient Execution of Deep Learning Kernels on Long Vector Machines" class="project-img">
+      <div class="card-body">
+        <h5>Efficient Execution of Deep Learning Kernels on Long Vector Machines</h5>
+        <p><p>During my first year of Master's degree, I worked as a research intern at Barcelona Supercomputing Center (BSC) for 3 months in the SONAR team. </p><p>The goal of this internship was to optimize deep learning kernels targeting long vector architectures.</p></p>
+        
+            <a class="button" href="contents/m1-report.pdf" download="Galvez-vectorization-report.pdf" onclick="event.stopPropagation();">Report</a>
+            
+            <a class="button" href="contents/m1-presentation.pdf" download="Galvez-vectorization-slides.pdf" onclick="event.stopPropagation();">Slides</a>
+            
+      </div>
+    </div>
+    
+    <div class="project-card" onclick="window.location.href='drawcaml.html'">
+      <img src="assets/drawcaml.jpg" alt="DrawCaml: an Object-Oriented graphical module for OCaml" class="project-img">
+      <div class="card-body">
+        <h5>DrawCaml: an Object-Oriented graphical module for OCaml</h5>
+        <p><p>DrawCaml is a graphical module for OCaml, built for Unix architectures. It lays on X11 library, and is developed using C++.</p><p> Our motivation was to make easier the creation of graphical applications with OCaml, by using Object Oriented part of OCaml.</p></p>
+        
+            <a class="button" href="https://github.com/DrawCaml/DrawCaml" target="_blank" onclick="event.stopPropagation();">Github</a>
+            
+            <a class="button" href="https://drawcaml.github.io/DrawCaml/" target="_blank" onclick="event.stopPropagation();">Documentation</a>
+            
+      </div>
+    </div>
+    
+    <div class="project-card" onclick="window.location.href='l3.html'">
+      <img src="assets/imagePyramid.png" alt="Parallel Optimization of a Pyramidal Computer Vision Algorithm" class="project-img">
+      <div class="card-body">
+        <h5>Parallel Optimization of a Pyramidal Computer Vision Algorithm</h5>
+        <p><p>I spent my Bachelor's degree internship with the ALSOC team of LIP6 laboratory (Paris). There, I studied the optimisation of the parallel execution of pyramidal computer vision algorithms.</p><p> These algorithms are widely used in image processing and are known to be very costly, so their optimisation is critical.</p></p>
+        
+            <a class="button" href="contents/l3-rapport.pdf" download="Galvez-parallelOptim-report.pdf" onclick="event.stopPropagation();">Report</a>
+            
+            <a class="button" href="contents/l3-presentation.pdf" download="Galvez-parallelOptim-slides.pdf" onclick="event.stopPropagation();">Slides</a>
+            
+      </div>
+    </div>
+    
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="bot-container">
+      <p>&copy; 2023 Enrique Galvez. All rights reserved.</p>
+      <div class="social-icons">
+        <a href="https://www.linkedin.com/in/enrique-galvez-b25817248" target="_blank">LinkedIn</a>
+        <a href="https://github.com/EnriqueGlv" target="_blank">GitHub</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
+    

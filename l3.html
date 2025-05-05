@@ -1,0 +1,90 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Parallel Optimization of a Pyramidal Computer Vision Algorithm</title>
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+  <link rel="stylesheet" href="project.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/prismjs@1.24.1/themes/prism.css">
+  <link rel="stylesheet" href="admon.css">
+  <!-- Google's Material Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css" rel="stylesheet">
+
+
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">Enrique Galvez</a>
+      <ul class="navbar-links">
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#projects">Projects</a></li>
+      </ul>
+    </div>
+  </nav>
+  
+  <!-- Project Content -->
+  <section class="project-content-section">
+    <div class="project-container">
+      <div id="project-content" class="markdown-body">
+        <h1>Parallel Optimization of a Pyramidal Computer Vision Algorithm</h1>
+<p>During my last year of Bachelor's degree, I worked as a research intern for 6 weeks at <a href="https://www.lip6.fr/">LIP6</a> (Paris). I worked with members of the ALSOC team which members are experts in embedded systems and designing efficient applications with good architecture-algorithm adequation.</p>
+<p>The purpose of my work was to study parallelism strategies for a pyramidal computer vision algorithm. The algorithm I worked on is inspired from Horn-Schunck algorithm, used by Maxime Millet for detecting meteors from a small satellite in his <a href="https://hal.sorbonne-universite.fr/THESES-SU/tel-05039986v1">PHD</a>.</p>
+<h2>The Pyramidal Computer Vision Algorithm</h2>
+<p>The computer vision algorithm I studied can be described in the following picture.</p>
+<p><img src="../assets/l3/pyramid.png" alt="pyramid"></p>
+<p>The algorithm can be decomposed in 2 phases:</p>
+<ul>
+<li><strong>Down-sampling</strong>: Image resolution is decreased by applying filters</li>
+<li><strong>Up-sampling</strong>: Image is re-created by using stencils (convolution filters) and upscaling filters</li>
+</ul>
+<p>However, measures on the real algorithm showed that the stencil operator is responsible for almost 80% of the whole execution time.</p>
+<h2>Parallel Execution of the Stencil</h2>
+<p>In my internship report, I compare several strategies for executing the stencil in parallel. The first one is pretty straight-forward and consists in naive parallelism of the for loops involved in stencil computation. The most interesting one changes the order of the loops in order to <strong>improve data locality</strong> but at the cost of doing redundant computations referred to as &quot;shadow-zones&quot; shown in below picture.</p>
+<p><img src="../assets/l3/shadow-zones.png" alt="shadow"></p>
+<p>A detailed explanation of my implementations as well as their evaluation is available in my <a href="contents/l3-rapport.pdf">internship report</a>.</p>
+<h2>Additionnal resources</h2>
+<p>If you want to learn more about my work, here are some useful resources:</p>
+<ul>
+<li><a href="contents/l3-rapport.pdf">Internship Report (french)</a></li>
+<li><a href="contents/l3-presentation.pdf">Slides (french)</a></li>
+<li><a href="https://hal.sorbonne-universite.fr/THESES-SU/tel-05039986v1">Maxime Millet's thesis</a></li>
+</ul>
+<h2>Special thanks</h2>
+<p>I want to thank Adrien Cassagne, Alix Munier, Maxime Millet and Lionel Lacassagne for their time and dedication to the follow-up of my internship !</p>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="quick-nav">
+    <a href="index.html#projects" class="quick-nav-button">← Back to Projects</a>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="bot-container">
+      <p>&copy; 2023 Enrique Galvez. All rights reserved.</p>
+      <div class="social-icons">
+        <a href="https://www.linkedin.com/in/enrique-galvez-b25817248" target="_blank">LinkedIn</a>
+        <a href="https://github.com/EnriqueGlv" target="_blank">GitHub</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script>
+  <script>
+    window.addEventListener("DOMContentLoaded", () => {
+      new ClipboardJS(".markdown-it-code-copy");
+    });
+    </script>
+</body>
+</html>
+    

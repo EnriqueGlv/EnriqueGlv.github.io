@@ -1,0 +1,88 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Efficient Execution of Deep Learning Kernels on Long Vector Machines</title>
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+  <link rel="stylesheet" href="project.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/prismjs@1.24.1/themes/prism.css">
+  <link rel="stylesheet" href="admon.css">
+  <!-- Google's Material Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css" rel="stylesheet">
+
+
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">Enrique Galvez</a>
+      <ul class="navbar-links">
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#projects">Projects</a></li>
+      </ul>
+    </div>
+  </nav>
+  
+  <!-- Project Content -->
+  <section class="project-content-section">
+    <div class="project-container">
+      <div id="project-content" class="markdown-body">
+        <h1>Efficient Execution of Deep Learning Kernels on Long Vector Machines</h1>
+<p>During my first year of Master's degree, I worked as a research intern for 3 months at <a href="https://www.bsc.es/">Barcelona Supercomputing Center</a> (BSC). BSC is part of the <a href="https://www.european-processor-initiative.eu/">European Processor Initiative</a> (EPI) and the team I worked with was working on the conception of a RISC-V processor with a long SIMD vector length. In order to benchmark the new capacities of such a processor, efficient libraries should be designed for applications such as linear algebra or deep learning.</p>
+<p>The purpose of my work was to design efficient vectorized algorithms for deep learning kernels such as pooling, ReLU and batch normalization. The motivation of my internship was to contribute to Alexandre De Limas Santana's PHD, which is about the vectorization of the convolution operator for the long SIMD processor developped at BSC.</p>
+<h2>Writing vectorized kernels for long SIMD architectures</h2>
+<p>SIMD architectures are very popular: most of recent processors already work with SIMD instructions usually with a fixed vector length between 64 and 512 bits. However, long SIMD architectures are relatively new and the design of efficient applications on such platforms presents some challenges.</p>
+<p>Some of the challenges I identified are:</p>
+<ul>
+<li>Using an appropriate <strong>tensor format</strong> in memory: loading contiguous data is faster than gathering data from sparse (or strided) memory locations</li>
+<li>Keeping a good <strong>data locality</strong> in order to decrease the number of memory accesses</li>
+<li>Maximizing the <strong>use of vector length</strong> in order to benefit for full SIMD capabilities</li>
+<li><strong>Compile-time optimizations</strong> such as loop-unrolling allow to further optimize the target application, with knowledge about the architecture</li>
+</ul>
+<p>By following these principles, I managed to obtain significant speedups (up to <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>6</mn><mn>0</mn><mo>×</mo></mrow><annotation encoding="application/x-tex">60\times</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.64444em;"></span><span class="strut bottom" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="base textstyle uncramped"><span class="mord mathrm">6</span><span class="mord mathrm">0</span><span class="mbin">×</span></span></span></span> faster for batch normalization) of the vectorized implementations compared to sequential implementations. My implementations were written with the aim of being added to <a href="https://www.bsc.es/research-and-development/software-and-apps/software-list/oneapi-deep-neural-network-library-onednn/downloads">BSC's RISCVV extension of OneDNN</a>.</p>
+<h2>Additionnal resources</h2>
+<p>If you want to learn more about my work, here are some useful resources:</p>
+<ul>
+<li><a href="contents/m1-report.pdf">Internship report</a></li>
+<li><a href="contents/m1-presentation.pdf">Internship Presentation</a></li>
+<li><a href="https://dl.acm.org/doi/10.1145/3572848.3577435">Alexandre Santana's paper about convolutions</a></li>
+<li><a href="https://www.bsc.es/research-and-development/software-and-apps/software-list/oneapi-deep-neural-network-library-onednn/downloads">BSC's RISCVV extension of OneDNN</a></li>
+</ul>
+<h2>Special thanks</h2>
+<p>I am grateful to my supervisors Marc Casas and Alexandre De Limas Santana for allowing me to work on such an interesting project.</p>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="quick-nav">
+    <a href="index.html#projects" class="quick-nav-button">← Back to Projects</a>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="bot-container">
+      <p>&copy; 2023 Enrique Galvez. All rights reserved.</p>
+      <div class="social-icons">
+        <a href="https://www.linkedin.com/in/enrique-galvez-b25817248" target="_blank">LinkedIn</a>
+        <a href="https://github.com/EnriqueGlv" target="_blank">GitHub</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script>
+  <script>
+    window.addEventListener("DOMContentLoaded", () => {
+      new ClipboardJS(".markdown-it-code-copy");
+    });
+    </script>
+</body>
+</html>
+    

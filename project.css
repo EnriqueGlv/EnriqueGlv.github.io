@@ -1,0 +1,152 @@
+body {
+  background: #fafafa;
+  font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  margin: 0;
+  /* padding: 10rem; */
+  /* display: flex; */
+  /* justify-content: center; */
+}
+
+/* fix katex */
+.katex {
+  all: initial; /* resets inherited styles */
+  font-size: 1em;
+}
+.katex-display {
+  display: block;
+  margin: 1em 0;
+  text-align: center;
+}
+
+
+/* project container */
+
+.project-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 65%;
+  margin: 20px auto;
+  padding-left: 20px;
+  padding-right: 20px;
+  box-sizing: border-box;
+}
+
+.project-section {
+  padding: 40px 0;
+}
+
+.quick-nav {
+  width: 65%;
+  margin: 20px auto;
+  padding-left: 80px;
+  padding-right: 20px;
+}
+
+.quick-nav a {
+  color: #0366d6;
+  text-decoration: none;
+  }
+
+.quick-nav a:hover {
+  text-decoration: underline;
+}
+
+/* Media Queries for Smaller Screens */
+@media (max-width: 1000px) {
+  .project-container {
+      width: 80%;
+      padding-left: 10px;
+      padding-right: 10px;
+  }
+
+  .quick-nav {
+      width: 80%;
+  }
+}
+
+
+/* Markdown styles */
+
+.markdown-body {
+  background: white;
+  padding: 3rem;
+  /* max-width: 800px; */
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+  font-size: 16px;
+  line-height: 1.5;
+  color: #24292e;
+}
+
+.markdown-body h1, .markdown-body h2, .markdown-body h3 {
+  border-bottom: 1px solid #eaecef;
+  padding-bottom: 0.3em;
+  margin-bottom: 1em;
+  font-weight: 600;
+}
+
+.markdown-body h1 {
+  font-size: xx-large;
+  margin-top: 0;
+}
+
+.markdown-body h2 {
+  font-size: x-large;
+  margin-top: 1.5em;
+}
+
+.markdown-body h3 {
+  font-weight: large;
+  margin-top: 1.5em;
+}
+
+.markdown-body pre {
+  background: #2d2d2d;
+  color: #f8f8f2;
+  padding: 1em;
+  border-radius: 6px;
+  overflow-x: auto;
+}
+
+.markdown-body code {
+  background: rgba(27,31,35,.05);
+  padding: 0.2em 0em;
+  border-radius: 4px;
+  font-size: 85%;
+}
+
+.markdown-body blockquote {
+  color: #6a737d;
+  border-left: 0.25em solid #dfe2e5;
+  padding: 0.5em 1em;
+  background: #f9f9f9;
+  margin: 1em 0;
+}
+
+.markdown-body table {
+  border-collapse: collapse;
+}
+
+.markdown-body table th,
+.markdown-body table td {
+  border: 1px solid #dfe2e5;
+  padding: 0.6em 1em;
+}
+
+.markdown-body a {
+  color: #0366d6;
+  text-decoration: none;
+}
+
+.markdown-body a:hover {
+  text-decoration: underline;
+}
+
+.markdown-body img {
+  max-width: 80%;
+  display: block;
+  margin: 0 auto;
+  height: auto;
+}
