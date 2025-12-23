@@ -1,38 +1,62 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>DrawCaml: an Object-Oriented graphical module for OCaml</title>
+
   <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+
+  <!-- Base styles -->
+  <link rel="stylesheet" href="newstyle.css">
   <link rel="stylesheet" href="project.css">
-  <link rel="stylesheet" href="style.css">
+
+  <!-- Markdown + code highlighting styles -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css">
   <link rel="stylesheet" href="https://unpkg.com/prismjs@1.24.1/themes/prism.css">
   <link rel="stylesheet" href="admon.css">
-  <!-- Google's Material Icons -->
+
+  <!-- Material icons -->
   <link href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css" rel="stylesheet">
-
-
 </head>
+
 <body>
 
   <!-- Navigation Bar -->
-  <nav class="navbar">
-    <div class="container">
-      <a class="navbar-brand" href="index.html">Enrique Galvez</a>
-      <ul class="navbar-links">
-        <li><a href="index.html#about">About</a></li>
-        <li><a href="index.html#projects">Projects</a></li>
-      </ul>
-    </div>
-  </nav>
-  
+  <div class="page-header sticky top-0 z-30">
+      <header id="site-header" class="header">
+          <nav class="max-w-7xl mx-auto navbar px-3 flex justify-start">
+              <div class="order-0 h-full">
+                  <a class="navbar-brand" href="/#" title="Enrique Galvez">Enrique Galvez</a>
+              </div>
+              <input id="nav-toggle" type="checkbox" class="hidden">
+              <label for="nav-toggle" class="order-3 cursor-pointer flex items-center lg:hidden text-[var(--color-header-fg)] lg:order-1">
+                  <svg id="show-button" class="h-6 fill-current block" viewBox="0 0 20 20">
+                      <title>Open Menu</title>
+                      <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0V0z"></path>
+                  </svg>
+                  <svg id="hide-button" class="h-6 fill-current hidden" viewBox="0 0 20 20">
+                      <title>Close Menu</title>
+                      <polygon points="11 9 22 9 22 11 11 11 11 22 9 22 9 11 -2 11 -2 9 9 9 9 -2 11 -2" transform="rotate(45 10 10)"></polygon>
+                  </svg>
+              </label>
+              <ul id="nav-menu" class="ms-auto navbar-nav order-3 hidden lg:flex w-full lg:order-1 lg:w-auto lg:space-x-2 lg:pb-0 xl:space-x-8 justify-start">
+                  <li class="nav-item"><a class="nav-link active" href="/#">Bio</a></li>
+                  <li class="nav-item"><a class="nav-link" href="/#publications">Publications</a></li>
+                  <!-- <li class="nav-item"><a class="nav-link" href="#talks">Talks</a></li> -->
+                  <!-- <li class="nav-item"><a class="nav-link" href="/experience/">Experience</a></li> -->
+                  <li class="nav-item"><a class="nav-link" href="/#projects">Projects</a></li>
+                  <li class="nav-item"><a class="nav-link" href="/#teaching">Teaching</a></li>
+              </ul>
+          </nav>
+      </header>
+  </div>
+
   <!-- Project Content -->
   <section class="project-content-section">
     <div class="project-container">
       <div id="project-content" class="markdown-body">
+
         <h1>DrawCaml: an Object-Oriented graphical module for OCaml</h1>
 <p>Drawcaml is an Object Oriented graphical library for the programming language OCaml. This project was made during the fist year of Master's degree at ENS de Lyon for the &quot;Integrated project&quot; class and obtained the final grade of 19/20.</p>
 <p>DrawCaml was made by a team of 4 students composed of Adrien Obrecht, Damien Lesens, Killian Barbé and myself.</p>
@@ -182,6 +206,7 @@ done;;
 <li>A <a href="https://drawcaml.github.io/DrawCaml/cpp/html/md_lib_Example_Doc.html">tutorial</a> (also available in the documentation)</li>
 </ul>
 
+
       </div>
     </div>
   </section>
@@ -191,14 +216,8 @@ done;;
   </div>
 
   <!-- Footer -->
-  <footer class="footer">
-    <div class="bot-container">
-      <p>&copy; 2023 Enrique Galvez. All rights reserved.</p>
-      <div class="social-icons">
-        <a href="https://www.linkedin.com/in/enrique-galvez-b25817248" target="_blank">LinkedIn</a>
-        <a href="https://github.com/EnriqueGlv" target="_blank">GitHub</a>
-      </div>
-    </div>
+  <footer class="page-footer text-center text-sm text-slate-700 dark:text-slate-200">
+      &copy; 2025 Enrique Galvez. Inspired by Hugo Academic and academic webpages. 
   </footer>
 
   <!-- Scripts -->
@@ -207,7 +226,7 @@ done;;
     window.addEventListener("DOMContentLoaded", () => {
       new ClipboardJS(".markdown-it-code-copy");
     });
-    </script>
+  </script>
+
 </body>
 </html>
-    

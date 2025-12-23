@@ -1,124 +1,477 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Personal Website - Enrique Galvez</title>
-  <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
-  <link rel="stylesheet" href="style.css">
-  <meta name="google-site-verification" content="2V5Qwt8HNqvVWsphqC9eGpYd0eiMHqtaeN9gxyakXZs" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enrique Galvez</title>
+    <meta name="description" content="Enrique Galvez's personal website. Contains information about my research works and contact information.">
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <link rel="stylesheet" href="newstyle.css">
+    <meta name="google-site-verification" content="2V5Qwt8HNqvVWsphqC9eGpYd0eiMHqtaeN9gxyakXZs" />
 </head>
-<body>
 
-  <!-- Navigation Bar -->
-  <nav class="navbar">
-    <div class="container">
-      <a class="navbar-brand" href="index.html">Enrique Galvez</a>
-      <ul class="navbar-links">
-        <li><a href="#about">About</a></li>
-        <li><a href="#projects">Projects</a></li>
-      </ul>
-    </div>
-  </nav>
+<body class="bg-[var(--color-background)] text-[var(--color-foreground)] page-wrapper" id="top">
 
-  <!-- About Section -->
-  <section class="about-section" id="about">
-    <div class="about-container">
-      <img src="assets/photo.jpg" alt="Enrique" class="profile-pic">
-      <div class="atext">
-        <h2>About Me</h2>
-        <p>I am a computer science student at École Normale Supérieure (ENS) de Lyon. I graduated in 2024 from the master <a href="https://informatique.ens-lyon.fr/en/academic-programs/master/master-computer-science"  target="_blank">"Informatique: Concepts et Applications"</a> and I am now preparing a future PHD by doing research internships for my last year at ENS de Lyon (see <a href="https://informatique.ens-lyon.fr/fr/formations/projet-long-de-recherche" target="_blank">PLR year</a>). </p>
-        <p>My research interests are relative to architecture-algorithm adequacy in the context of complex applications (in particular deep learning algorithms) running on modern systems (HPC environments or embedded systems) with respect to certain constraints such as energy consumption, speed or throughput.</p>
-        <a class="cv-button" href="contents/CV.pdf" target="_blank" download="enrique-galvez-CV">Download my resume</a>
-      </div>
+    <div id="page-bg"></div>
+    <!-- Navigation Bar -->
+    <div class="page-header sticky top-0 z-30">
+        <header id="site-header" class="header">
+            <nav class="max-w-7xl mx-auto navbar px-3 flex justify-start">
+                <div class="order-0 h-full">
+                    <a class="navbar-brand" href="#" title="Enrique Galvez">Enrique Galvez</a>
+                </div>
+                <input id="nav-toggle" type="checkbox" class="hidden">
+                <label for="nav-toggle" class="order-3 cursor-pointer flex items-center lg:hidden text-[var(--color-header-fg)] lg:order-1">
+                    <svg id="show-button" class="h-6 fill-current block" viewBox="0 0 20 20">
+                        <title>Open Menu</title>
+                        <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0V0z"></path>
+                    </svg>
+                    <svg id="hide-button" class="h-6 fill-current hidden" viewBox="0 0 20 20">
+                        <title>Close Menu</title>
+                        <polygon points="11 9 22 9 22 11 11 11 11 22 9 22 9 11 -2 11 -2 9 9 9 9 -2 11 -2" transform="rotate(45 10 10)"></polygon>
+                    </svg>
+                </label>
+                <ul id="nav-menu" class="ms-auto navbar-nav order-3 hidden lg:flex w-full lg:order-1 lg:w-auto lg:space-x-2 lg:pb-0 xl:space-x-8 justify-start">
+                    <li class="nav-item"><a class="nav-link active" href="#">Bio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#publications">Publications</a></li>
+                    <!-- <li class="nav-item"><a class="nav-link" href="#talks">Talks</a></li> -->
+                    <!-- <li class="nav-item"><a class="nav-link" href="/experience/">Experience</a></li> -->
+                    <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#teaching">Teaching</a></li>
+                </ul>
+            </nav>
+        </header>
     </div>
-  </section>
 
-  <!-- Projects Section -->
-  <section class="projects-section" id="projects">
-    <div class="container">
-      <h2>Projects</h2>
-      <div class="proj-container" id="project-list">
-        
-    <div class="project-card" onclick="window.location.href='inria.html'">
-      <img src="assets/inria-img.png" alt="Efficient Scheduling of Transformers using StarPU" class="project-img">
-      <div class="card-body">
-        <h5>Efficient Scheduling of Transformers using StarPU</h5>
-        <p></p>For the first half of my last year at ENS de Lyon, I worked as a research intern at Inria Bordeaux in the TOPAL team (HPC).</p> <p>By using the framework NNTile, I studied how to efficiently schedule the elementary operations of the attention layer of transformers.</p></p>
-        
-            <a class="button" href="contents/inria-report.pdf" download="Galvez-attention-scheduling-report.pdf" onclick="event.stopPropagation();">Report</a>
-            
-      </div>
-    </div>
-    
-    <div class="project-card" onclick="window.location.href='m2.html'">
-      <img src="assets/m2-img.png" alt="Optimizing Deep Learning Convolutions for Embedded Processors" class="project-img">
-      <div class="card-body">
-        <h5>Optimizing Deep Learning Convolutions for Embedded Processors</h5>
-        <p><p>During my second year of Master's degree, I worked as a research intern at LIP6 (Paris) for 5 months in the ALSOC team (embedded systems). </p><p>During this internship, I studied time and performance efficiency of the 4 most used methods for computing deep learning convolutions.</p></p>
-        
-            <a class="button" href="contents/m2-report.pdf" download="Galvez-convolutions-report.pdf" onclick="event.stopPropagation();">Report</a>
-            
-            <a class="button" href="contents/m2-presentation.pdf" download="Galvez-convolution-slides.pdf" onclick="event.stopPropagation();">Slides</a>
-            
-      </div>
-    </div>
-    
-    <div class="project-card" onclick="window.location.href='m1.html'">
-      <img src="assets/m1-img.png" alt="Efficient Execution of Deep Learning Kernels on Long Vector Machines" class="project-img">
-      <div class="card-body">
-        <h5>Efficient Execution of Deep Learning Kernels on Long Vector Machines</h5>
-        <p><p>During my first year of Master's degree, I worked as a research intern at Barcelona Supercomputing Center (BSC) for 3 months in the SONAR team. </p><p>The goal of this internship was to optimize deep learning kernels targeting long vector architectures.</p></p>
-        
-            <a class="button" href="contents/m1-report.pdf" download="Galvez-vectorization-report.pdf" onclick="event.stopPropagation();">Report</a>
-            
-            <a class="button" href="contents/m1-presentation.pdf" download="Galvez-vectorization-slides.pdf" onclick="event.stopPropagation();">Slides</a>
-            
-      </div>
-    </div>
-    
-    <div class="project-card" onclick="window.location.href='drawcaml.html'">
-      <img src="assets/drawcaml.jpg" alt="DrawCaml: an Object-Oriented graphical module for OCaml" class="project-img">
-      <div class="card-body">
-        <h5>DrawCaml: an Object-Oriented graphical module for OCaml</h5>
-        <p><p>DrawCaml is a graphical module for OCaml, built for Unix architectures. It lays on X11 library, and is developed using C++.</p><p> Our motivation was to make easier the creation of graphical applications with OCaml, by using Object Oriented part of OCaml.</p></p>
-        
-            <a class="button" href="https://github.com/DrawCaml/DrawCaml" target="_blank" onclick="event.stopPropagation();">Github</a>
-            
-            <a class="button" href="https://drawcaml.github.io/DrawCaml/" target="_blank" onclick="event.stopPropagation();">Documentation</a>
-            
-      </div>
-    </div>
-    
-    <div class="project-card" onclick="window.location.href='l3.html'">
-      <img src="assets/imagePyramid.png" alt="Parallel Optimization of a Pyramidal Computer Vision Algorithm" class="project-img">
-      <div class="card-body">
-        <h5>Parallel Optimization of a Pyramidal Computer Vision Algorithm</h5>
-        <p><p>I spent my Bachelor's degree internship with the ALSOC team of LIP6 laboratory (Paris). There, I studied the optimisation of the parallel execution of pyramidal computer vision algorithms.</p><p> These algorithms are widely used in image processing and are known to be very costly, so their optimisation is critical.</p></p>
-        
-            <a class="button" href="contents/l3-rapport.pdf" download="Galvez-parallelOptim-report.pdf" onclick="event.stopPropagation();">Report</a>
-            
-            <a class="button" href="contents/l3-presentation.pdf" download="Galvez-parallelOptim-slides.pdf" onclick="event.stopPropagation();">Slides</a>
-            
-      </div>
-    </div>
-    
-      </div>
-    </div>
-  </section>
+  <section id="section-resume-biography-3" class="relative blox-resume-biography-3">
+        <div class="home-section-bg"></div>
+        <div class="resume-biography py-4 px-4 relative">
+            <div class="max-w-7xl mx-auto"><!--</div>"max-w-7xl mx-auto"-->
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 items-start">
+                    <div class="md:sticky self-start top-24 py-8 md:col-span-4 flex flex-col items-center text-center space-y-6 md:space-y-8">
+                        <div class="avatar-wrapper mb-4">
+                            <img class="avatar rounded-full border-4 border-white shadow-2xl" src="../assets/photo.jpg" alt="Enrique Galvez" width="250px" style="object-fit:cover">
+                            <!-- <span class="avatar-emoji">☕️</span> -->
+                        </div>
+                        <div class="space-y-3">
+                            <h1 class="text-4xl sm:text-5xl font-black text-gray-900 dark:text-white leading-tight">Enrique Galvez</h1>
+                            <p class="text-2xl font-semibold text-primary-600 dark:text-primary-400">PHD Student in HPC/AI</p>
+                            <p class="text-lg text-gray-700 dark:text-gray-300"><a href="https://www.lip6.fr/" target="_blank" rel="noopener" class="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Sorbonne Université, LIP6 (Paris, France)</a></p>
+                            <p class="text-lg text-gray-700 dark:text-gray-300"><a href="mailto:enrique.galvez@lip6.fr" target="_blank" rel="noopener" class="hover:text-primary-600 dark:hover:text-primary-400 transition-colors"><i>enrique.galvez@lip6.fr</i></a></p>
+                        </div>
+                        <div class="flex flex-wrap justify-center gap-4">
+                            <!-- <a href="mailto:enrique.galvez@lip6.fr" aria-label="at-symbol" title="E-mail Me" class="w-12 h-12 flex items-center justify-center rounded-full bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-400 shadow-md hover:shadow-xl hover:scale-110 hover:-translate-y-1 transition-all duration-300 border border-gray-200 dark:border-gray-700">
+                                <svg class="w-6 h-6" viewBox="0 0 24 24">
+                                    <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5" d="M16.5 12a4.5 4.5.0 11-9 0 4.5 4.5.0 019 0zm0 0c0 1.657 1.007 3 2.25 3S21 13.657 21 12a9 9 0 10-2.636 6.364M16.5 12V8.25"></path>
+                                </svg>
+                            </a> -->
+                            <!-- <a href="https://x.com/example" target="_blank" rel="noopener" aria-label="brands/x" class="w-12 h-12 flex items-center justify-center rounded-full bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-400 shadow-md hover:shadow-xl hover:scale-110 hover:-translate-y-1 transition-all duration-300 border border-gray-200 dark:border-gray-700">
+                                <svg class="w-6 h-6" viewBox="0 0 512 512">
+                                    <path fill="currentColor" d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"></path>
+                                </svg>
+                            </a> -->
+                            <a href="https://www.linkedin.com/in/enrique-galvez-b25817248" target="_blank" rel="noopener" aria-label="brands/linkedin" class="w-12 h-12 flex items-center justify-center rounded-full bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-400 shadow-md hover:shadow-xl hover:scale-110 hover:-translate-y-1 transition-all duration-300 border border-gray-200 dark:border-gray-700">
+                                <svg class="w-6 h-6" height="1em" viewBox="0 0 448 512">
+                                    <path fill="currentColor" d="M416 32H31.9C14.3 32 0 46.5.0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6.0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3.0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2.0 38.5 17.3 38.5 38.5.0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6.0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2.0 79.7 44.3 79.7 101.9V416z"></path>
+                                </svg>
+                            </a>
+                            <a href="https://scholar.google.com/citations?user=hxa90y0AAAAJ&hl" target="_blank" rel="noopener" aria-label="academicons/google-scholar" class="w-12 h-12 flex items-center justify-center rounded-full bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-400 shadow-md hover:shadow-xl hover:scale-110 hover:-translate-y-1 transition-all duration-300 border border-gray-200 dark:border-gray-700">
+                                <svg class="w-6 h-6" viewBox="0 0 512 512">
+                                    <path fill="currentColor" d="M343.759 106.662V79.43L363.524 64h-213.89L20.476 176.274h85.656a82.339 82.339.0 00-.219 6.225c0 20.845 7.22 38.087 21.672 51.861 14.453 13.797 32.252 20.648 53.327 20.648 4.923.0 9.75-.368 14.438-1.024-2.907 6.5-4.374 12.523-4.374 18.142.0 9.875 4.499 20.43 13.467 31.642-39.234 2.67-68.061 9.732-86.437 21.163-10.531 6.5-19 14.704-25.39 24.531-6.391 9.9-9.578 20.515-9.578 31.962.0 9.648 2.062 18.336 6.219 26.062 4.156 7.726 9.578 14.07 16.312 18.984 6.718 4.968 14.469 9.101 23.219 12.469 8.734 3.344 17.406 5.718 26.061 7.062A167.052 167.052.0 00180.555 448c13.469.0 26.953-1.734 40.547-5.187 13.562-3.485 26.28-8.642 38.171-15.493 11.86-6.805 21.515-16.086 28.922-27.718 7.39-11.68 11.094-24.805 11.094-39.336.0-11.016-2.25-21.039-6.75-30.14-4.468-9.073-9.938-16.542-16.452-22.345-6.501-5.813-13-11.155-19.516-15.968-6.5-4.845-12-9.75-16.468-14.813-4.485-5.046-6.735-10.054-6.735-14.984.0-4.921 1.734-9.672 5.216-14.265 3.455-4.61 7.674-9.048 12.61-13.306 4.937-4.25 9.875-8.968 14.796-14.133 4.922-5.147 9.141-11.827 12.61-20.008 3.485-8.18 5.203-17.445 5.203-27.757.0-13.453-2.547-24.46-7.547-33.314-.594-1.022-1.218-1.803-1.875-3.022l56.907-46.672v17.119c-7.393.93-6.624 5.345-6.624 10.635V245.96c0 5.958 4.875 10.834 10.834 10.834h3.989c5.958.0 10.833-4.875 10.833-10.834V117.293c0-5.277.778-9.688-6.561-10.63zm-107.36 222.48c1.14.75 3.704 2.78 7.718 6.038 4.05 3.243 6.797 5.695 8.266 7.414a443.553 443.553.0 016.376 7.547c2.813 3.375 4.718 6.304 5.718 8.734 1 2.477 2.016 5.461 3.047 8.946a38.27 38.27.0 011.485 10.562c0 17.048-6.564 29.68-19.656 37.859-13.125 8.18-28.767 12.274-46.938 12.274-9.187.0-18.203-1.093-27.063-3.196-8.843-2.116-17.311-5.336-25.39-9.601-8.078-4.258-14.577-10.204-19.5-17.797-4.938-7.64-7.407-16.415-7.407-26.25.0-10.32 2.797-19.29 8.422-26.906 5.594-7.625 12.938-13.391 22.032-17.315 9.063-3.946 18.25-6.742 27.562-8.398a157.865 157.865.0 0128.438-2.555c4.47.0 7.936.25 10.405.696.455.219 3.032 2.07 7.735 5.563 4.704 3.462 7.625 5.595 8.75 6.384zm-3.359-100.579c-7.406 8.86-17.734 13.288-30.953 13.288-11.86.0-22.298-4.764-31.266-14.312-9-9.523-15.422-20.328-19.344-32.43-3.937-12.109-5.906-23.984-5.906-35.648.0-13.694 3.596-25.352 10.781-34.976 7.187-9.65 17.5-14.485 30.938-14.485 11.875.0 22.374 5.038 31.437 15.157 9.094 10.085 15.61 21.413 19.517 33.968 3.922 12.54 5.873 24.53 5.873 35.984.0 13.446-3.702 24.61-11.076 33.454z"></path>
+                                </svg>
+                            </a>
+                            <a href="https://orcid.org/0009-0004-9675-4049" target="_blank" rel="noopener" aria-label="academicons/orcid" class="w-12 h-12 flex items-center justify-center rounded-full bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-400 shadow-md hover:shadow-xl hover:scale-110 hover:-translate-y-1 transition-all duration-300 border border-gray-200 dark:border-gray-700">
+                                <svg class="w-6 h-6" viewBox="0 0 512 512">
+                                    <path fill="currentColor" d="M336.62 194.538c-7.13-3.328-13.866-5.56-20.253-6.614-6.365-1.095-16.574-1.612-30.71-1.612h-36.704v152.747h37.634c14.673.0 26.081-1.013 34.224-3.017 8.142-2.004 14.921-4.526 20.356-7.626a69.448 69.448.0 0014.942-11.388c14.488-14.714 21.742-33.273 21.742-55.717.0-22.052-7.44-40.052-22.341-53.982-5.498-5.166-11.822-9.444-18.89-12.793zM256 8C119.022 8 8 119.042 8 256s111.022 248 248 248 248-111.042 248-248S392.978 8 256 8zm-82.336 357.513h-29.389V160.148h29.389zM158.95 138.696c-11.14.0-20.213-9.01-20.213-20.212.0-11.118 9.052-20.191 20.213-20.191 11.18.0 20.232 9.052 20.232 20.191a20.194 20.194.0 01-20.232 20.212zm241.386 163.597c-5.29 12.545-12.834 23.581-22.65 33.088-9.982 9.837-21.597 17.194-34.844 22.196-7.75 3.017-14.839 5.063-21.307 6.117-6.49 1.013-18.828 1.509-37.076 1.509h-64.956V160.148h69.233c27.962.0 50.034 4.154 66.32 12.545 16.265 8.37 29.181 20.728 38.792 36.972 9.61 16.265 14.425 34.018 14.425 53.196.023 13.765-2.666 26.908-7.936 39.432z"></path>
+                                </svg>
+                            </a>
+                            <a href="https://github.com/EnriqueGlv" target="_blank" rel="noopener" aria-label="brands/github" class="w-12 h-12 flex items-center justify-center rounded-full bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-400 shadow-md hover:shadow-xl hover:scale-110 hover:-translate-y-1 transition-all duration-300 border border-gray-200 dark:border-gray-700">
+                                <svg class="w-6 h-6" fill="currentColor" viewBox="3 3 18 18">
+                                    <path d="M12 3C7.0275 3 3 7.12937 3 12.2276c0 4.0833 2.57625 7.5321 6.15374 8.7548C9.60374 21.0631 9.77249 20.7863 9.77249 20.5441 9.77249 20.3249 9.76125 19.5982 9.76125 18.8254 7.5 19.2522 6.915 18.2602 6.735 17.7412 6.63375 17.4759 6.19499 16.6569 5.8125 16.4378 5.4975 16.2647 5.0475 15.838 5.80124 15.8264 6.51 15.8149 7.01625 16.4954 7.18499 16.7723 7.99499 18.1679 9.28875 17.7758 9.80625 17.5335 9.885 16.9337 10.1212 16.53 10.38 16.2993 8.3775 16.0687 6.285 15.2728 6.285 11.7432c0-1.0035.34875-1.834.92249-2.47994C7.1175 9.03257 6.8025 8.08674 7.2975 6.81794c0 0 .753749999999999-.24223 2.47499.94583.72001-.20762 1.48501-.31143 2.25001-.31143C12.7875 7.45234 13.5525 7.55615 14.2725 7.76377c1.7212-1.19959 2.475-.94583 2.475-.94583C17.2424 8.08674 16.9275 9.03257 16.8375 9.26326 17.4113 9.9092 17.76 10.7281 17.76 11.7432c0 3.5411-2.1037 4.3255-4.1063 4.5561C13.98 16.5877 14.2613 17.1414 14.2613 18.0065 14.2613 19.2407 14.25 20.2326 14.25 20.5441 14.25 20.7863 14.4188 21.0746 14.8688 20.9824 16.6554 20.364 18.2079 19.1866 19.3078 17.6162c1.0999-1.5705 1.6917-3.4551 1.6922-5.3886C21 7.12937 16.9725 3 12 3z"></path>
+                                </svg>
+                            </a>
+                        </div>
+                        <div class="mb-16 mt-6">
+                            <a href="contents/CV.pdf" target="_blank" class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-primary-600 to-secondary-600 hover:from-primary-700 hover:to-secondary-700 text-white font-bold text-lg rounded-xl shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300">
+                                <svg class="w-5 h-5 mr-3" viewBox="0 0 24 24">
+                                    <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.5 14.25v-2.625A3.375 3.375.0 0016.125 8.25h-1.5A1.125 1.125.0 0113.5 7.125v-1.5A3.375 3.375.0 0010.125 2.25H8.25m.75 12 3 3m0 0 3-3m-3 3v-6m-1.5-9H5.625c-.621.0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621.0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9"></path>
+                                </svg>
+                                Download CV
+                            </a>
+                        </div>
+                    </div>
+                    <div class="md:col-span-8 py-8">
+                        <div class="mb-12">
+                            <div class="flex items-center gap-4 mb-8">
+                                <div class="flex-shrink-0 w-12 h-12 flex items-center justify-center">
+                                    <svg class="w-8 h-8 text-black-600" viewBox="0 0 24 24">
+                                        <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 9h3.75M15 12h3.75M15 15h3.75M4.5 19.5h15a2.25 2.25.0 002.25-2.25V6.75A2.25 2.25.0 0019.5 4.5h-15A2.25 2.25.0 002.25 6.75v10.5A2.25 2.25.0 004.5 19.5m6-10.125a1.875 1.875.0 11-3.75.0 1.875 1.875.0 013.75.0m1.294 6.336a6.721 6.721.0 01-3.17.789 6.721 6.721.0 01-3.168-.789 3.376 3.376.0 016.338.0"></path>
+                                    </svg>
+                                </div>
+                                <h2 class="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white tracking-tight">About me</h2>
+                            </div>
+                            <div class="prose prose-lg dark:prose-invert text-gray-800 dark:text-gray-200 text-base sm:text-lg leading-relaxed">
+                                <div class="bio-text"><p>I am a PHD student at LIP6 laboratory, located at Sorbonne Université, Paris, France. My thesis, conducted under the supervision of <a href="https://www.lip6.fr/actualite/personnes-fiche.php?ident=P653" class="hover:text-primary-600" target="_blank">Alix Munier</a> and <a href="https://largo.lip6.fr/~cassagnea/" class="hover:text-primary-600" target="_blank">Adrien Cassagne</a> focuses on <i>"Modeling and optimization of execution frameworks for deep neural networks on heterogeneous architectures: memory management, energy efficiency, and parallelism"</i>.
+                                <br style="margin-bottom: 10px;">
+                                My research interests are relative to architecture-algorithm adequacy in the context of deep learning inference, targetting modern systems (HPC environments or embedded systems) with respect to critical metrics such as energy consumption, inference latency or throughput.</p></div>
+                            </div>
+                        </div>
+                        <div class="mb-16">
+                            <div class="flex items-center gap-4 mb-8">
+                                <div class="flex-shrink-0 w-12 h-12 flex items-center justify-center">
+                                    <svg class="w-8 h-8 text-black-600" viewBox="0 0 24 24">
+                                        <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.26 10.147a60.436 60.436.0 00-.491 6.347A48.627 48.627.0 0112 20.904a48.627 48.627.0 018.232-4.41 60.46 60.46.0 00-.491-6.347m-15.482.0a50.57 50.57.0 00-2.658-.813A59.905 59.905.0 0112 3.493a59.902 59.902.0 0110.399 5.84 51.39 51.39.0 00-2.658.814m-15.482.0A50.697 50.697.0 0112 13.489a50.702 50.702.0 017.74-3.342M6.75 15a.75.75.0 100-1.5.75.75.0 000 1.5m0 0v-3.675A55.378 55.378.0 0112 8.443m-7.007 11.55A5.981 5.981.0 006.75 15.75v-1.5"></path>
+                                    </svg>
+                                </div>
+                                <h3 class="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white tracking-tight">Education</h3>
+                            </div>
+                            <div class="grid grid-cols-1 gap-6 px-4">
+                                <div class="group h-full flex flex-col">
+                                    <div class="flex gap-4">
+                                        <div class="w-28 flex items-center justify-center">
+                                            <img src="assets/su.png" alt="SU" class="h-16 text-primary-600 dark:text-primary-400">
+                                        </div>
+                                        <div class="flex-1 flex-grow">
+                                            <p class="text-xl font-bold text-gray-900">PhD in Computer Science (1<sup>st</sup> year)</p>
+                                            <p class="text-gray-600 dark:text-gray-400 font-medium mt-1">Sorbonne Université, funded by ENS de Lyon. 2025-2028</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="group h-full flex flex-col">
+                                    <div class="flex gap-4">
+                                        <div class="w-28 flex items-center justify-center">
+                                            <img src="assets/ensl.png" alt="SU" class="h-8 self-center my-auto text-center text-primary-600 dark:text-primary-400" />
+                                        </div>
+                                        <div class="flex-1 flex-grow">
+                                            <p class="text-xl font-bold text-gray-900">MS and BS in Computer Science</p>
+                                            <!-- <p class="text-gray-600 dark:text-gray-400 font-medium mt-1">2013-09-01 - 2015-05-31</p> -->
+                                            <p class="text-gray-600 dark:text-gray-400 font-medium mt-1">École Normale Supérieure de Lyon. 2021-2025</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="">
+                            <div class="flex items-center gap-4 mb-8">
+                                <div class="flex-shrink-0 w-12 h-12 flex items-center justify-center"><svg class="w-8 h-8 text-black-600" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5.0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5.0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5.0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5.0 00-3.09 3.09m8.445-7.188L18 9.75l-.259-1.035a3.375 3.375.0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375.0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375.0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375.0 00-2.456 2.456m-1.365 11.852L16.5 21.75l-.394-1.183a2.25 2.25.0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25.0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25.0 001.423 1.423l1.183.394-1.183.394a2.25 2.25.0 00-1.423 1.423"></path></svg></div>
+                                <h3 class="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white tracking-tight">Interests</h3>
+                            </div>
+                            <div class="flex flex-wrap gap-3">
+                                <span class="inline-block bg-primary-50 dark:bg-gray-800 text-primary-800 dark:text-primary-200 text-base font-medium px-4 py-2 rounded-full border border-primary-200/50 dark:border-primary-800/50 hover:bg-primary-100 dark:hover:bg-primary-500 dark:hover:text-gray-900 dark:hover:border-primary-500 transition-all duration-200 cursor-default">High Performance Computing</span>
+                                <span class="inline-block bg-primary-50 dark:bg-gray-800 text-primary-800 dark:text-primary-200 text-base font-medium px-4 py-2 rounded-full border border-primary-200/50 dark:border-primary-800/50 hover:bg-primary-100 dark:hover:bg-primary-500 dark:hover:text-gray-900 dark:hover:border-primary-500 transition-all duration-200 cursor-default">Large Language Models</span>
+                                <span class="inline-block bg-primary-50 dark:bg-gray-800 text-primary-800 dark:text-primary-200 text-base font-medium px-4 py-2 rounded-full border border-primary-200/50 dark:border-primary-800/50 hover:bg-primary-100 dark:hover:bg-primary-500 dark:hover:text-gray-900 dark:hover:border-primary-500 transition-all duration-200 cursor-default">Computer Vision</span>
+                                <span class="inline-block bg-primary-50 dark:bg-gray-800 text-primary-800 dark:text-primary-200 text-base font-medium px-4 py-2 rounded-full border border-primary-200/50 dark:border-primary-800/50 hover:bg-primary-100 dark:hover:bg-primary-500 dark:hover:text-gray-900 dark:hover:border-primary-500 transition-all duration-200 cursor-default">Energy Efficiency</span>
+                                <span class="inline-block bg-primary-50 dark:bg-gray-800 text-primary-800 dark:text-primary-200 text-base font-medium px-4 py-2 rounded-full border border-primary-200/50 dark:border-primary-800/50 hover:bg-primary-100 dark:hover:bg-primary-500 dark:hover:text-gray-900 dark:hover:border-primary-500 transition-all duration-200 cursor-default">Embedded Systems</span>
+                                <span class="inline-block bg-primary-50 dark:bg-gray-800 text-primary-800 dark:text-primary-200 text-base font-medium px-4 py-2 rounded-full border border-primary-200/50 dark:border-primary-800/50 hover:bg-primary-100 dark:hover:bg-primary-500 dark:hover:text-gray-900 dark:hover:border-primary-500 transition-all duration-200 cursor-default">Real-time Inference</span>
+                                <!-- <span class="inline-block bg-primary-50 dark:bg-gray-800 text-primary-800 dark:text-primary-200 text-base font-medium px-4 py-2 rounded-full border border-primary-200/50 dark:border-primary-800/50 hover:bg-primary-100 dark:hover:bg-primary-500 dark:hover:text-gray-900 dark:hover:border-primary-500 transition-all duration-200 cursor-default">Real-time Inference</span> -->
+                            </div>
+                        </div>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="bot-container">
-      <p>&copy; 2023 Enrique Galvez. All rights reserved.</p>
-      <div class="social-icons">
-        <a href="https://www.linkedin.com/in/enrique-galvez-b25817248" target="_blank">LinkedIn</a>
-        <a href="https://github.com/EnriqueGlv" target="_blank">GitHub</a>
+                        <div class="pb-50"></div>
+
+                    <div>
+                        <div id="publications" class="scroll-navbar"></div>
+                        <div class="flex items-center max-w-prose mx-auto gap-3 justify-center px-6 md:px-0">
+                            <svg class="w-8 h-8 flex-shrink-0 text-primary-600 dark:text-primary-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M552 64H88c-13.255 0-24 10.745-24 24v8H24c-13.255 0-24 10.745-24 24v272c0 30.928 25.072 56 56 56h472c26.51 0 48-21.49 48-48V88c0-13.255-10.745-24-24-24zM56 400a8 8 0 0 1-8-8V144h16v248a8 8 0 0 1-8 8zm236-16H140c-6.627 0-12-5.373-12-12v-8c0-6.627 5.373-12 12-12h152c6.627 0 12 5.373 12 12v8c0 6.627-5.373 12-12 12zm208 0H348c-6.627 0-12-5.373-12-12v-8c0-6.627 5.373-12 12-12h152c6.627 0 12 5.373 12 12v8c0 6.627-5.373 12-12 12zm-208-96H140c-6.627 0-12-5.373-12-12v-8c0-6.627 5.373-12 12-12h152c6.627 0 12 5.373 12 12v8c0 6.627-5.373 12-12 12zm208 0H348c-6.627 0-12-5.373-12-12v-8c0-6.627 5.373-12 12-12h152c6.627 0 12 5.373 12 12v8c0 6.627-5.373 12-12 12zm0-96H140c-6.627 0-12-5.373-12-12v-40c0-6.627 5.373-12 12-12h360c6.627 0 12 5.373 12 12v40c0 6.627-5.373 12-12 12z"/></svg>
+                            <div class="text-3xl font-bold text-gray-900 dark:text-white leading-none">Publications</div>
+                        </div>
+                        <div class="flex flex-col items-center px-6 pb-100">
+                            <div class="mt-16 sm:mt-20 container max-w-3xl w-full">
+                                <div class="flex flex-col space-y-3">
+                                    
+    <h3 class="text-lg"><i>Inproceedings</i> (2)</h3>
+    <hr>
+    
+      <div class="pub-list-item view-citation pb-6">
+        2025&nbsp&nbsp
+
+        <a href="https://hal.science/hal-05285542" target="_blank" class="font-bold">Benchmarking Deep Learning Convolutions on Energy-constrained CPUs</a>.
+        
+        <span class="article-metadata li-cite-author">
+          <span>E. Galvez</span>, <span>A. Cassagne</span>, <span>A. Munier</span>, <span>M. Bouyer</span>
+        </span>
+         - <b class="text-green-600">Accepted to DASIP2026</b>
+        
+        
+
+        <div class="flex flex-wrap space-x-3 mt-2">
+          
+    <a class="hb-attachment-link hb-attachment-link-small"
+       href="https://hal.science/hal-05285542" target="_blank" rel="noopener"
+       style="display: flex; align-items: center; gap: 0.5em;">
+       
+    <svg style="height:1em" class="inline-block" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13.19 8.688a4.5 4.5.0 011.242 7.244l-4.5 4.5a4.5 4.5.0 01-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5.0 00-6.364-6.364l-4.5 4.5a4.5 4.5.0 001.242 7.244"></path></svg>
+   URL
+    </a>
+  
+          
+          
+          
+          
+    <a class="hb-attachment-link hb-attachment-link-small"
+       href="https://hal.science/hal-05285542v1/file/main.pdf" target="_blank" rel="noopener"
+       style="display: flex; align-items: center; gap: 0.5em;">
+       
+    <svg style="height:1em" class="inline-block" viewBox="0 0 24 24">
+      <path fill="none" stroke="currentColor"
+            stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+            d="M19.5 14.25v-2.625A3.375 3.375.0 0016.125 8.25h-1.5A1.125 1.125.0 0113.5 7.125v-1.5A3.375 3.375.0 0010.125 2.25H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621.0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621.0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9"/>
+    </svg>
+   Preprint
+    </a>
+  
+        </div>
       </div>
-    </div>
-  </footer>
+    
+      <div class="pub-list-item view-citation pb-6">
+        2025&nbsp&nbsp
+
+        <a class="font-bold">Defects detection on railway networks using Transformers and their
+deployment on embedded GPU architectures</a>.
+        
+        <span class="article-metadata li-cite-author">
+          <span>E. Galvez</span>, <span>S. Radosavljevic</span>, <span>A. Rivero</span>, <span>A. El Ouardi</span>, <span>S. Rodríguez F.</span>, <span>A. Boubezoul</span>
+        </span>
+         - <b class="text-slate-500">Under double-blind review (modified title)</b>
+        
+        
+
+        <div class="flex flex-wrap space-x-3 mt-2">
+          
+          
+          
+          
+          
+        </div>
+      </div>
+    
+  
+    <h3 class="text-lg"><i>Poster</i> (1)</h3>
+    <hr>
+    
+      <div class="pub-list-item view-citation pb-6">
+        2025&nbsp&nbsp
+
+        <a href="https://hal.science/hal-05141908" target="_blank" class="font-bold">Benchmarking Deep Learning Convolutions on Energy-constrained CPUs</a>.
+        
+        <span class="article-metadata li-cite-author">
+          <span>E. Galvez</span>, <span>A. Cassagne</span>, <span>A. Munier-Kordon</span>, <span>M. Bouyer</span>
+        </span>
+        
+        
+        <em>1st International Workshop on Distributed and Parallel Programming for Extreme-scale AI (DP2E-AI)</em>.
+
+        <div class="flex flex-wrap space-x-3 mt-2">
+          
+    <a class="hb-attachment-link hb-attachment-link-small"
+       href="https://hal.science/hal-05141908" target="_blank" rel="noopener"
+       style="display: flex; align-items: center; gap: 0.5em;">
+       
+    <svg style="height:1em" class="inline-block" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13.19 8.688a4.5 4.5.0 011.242 7.244l-4.5 4.5a4.5 4.5.0 01-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5.0 00-6.364-6.364l-4.5 4.5a4.5 4.5.0 001.242 7.244"></path></svg>
+   URL
+    </a>
+  
+          
+    <a class="hb-attachment-link hb-attachment-link-small"
+       href="https://hal.science/hal-05141908v1/file/poster.pdf" target="_blank" rel="noopener"
+       style="display: flex; align-items: center; gap: 0.5em;">
+       
+    <svg style="height:1em" class="inline-block" viewBox="0 0 24 24">
+      <path fill="none" stroke="currentColor"
+            stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+            d="M19.5 14.25v-2.625A3.375 3.375.0 0016.125 8.25h-1.5A1.125 1.125.0 0113.5 7.125v-1.5A3.375 3.375.0 0010.125 2.25H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621.0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621.0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9"/>
+    </svg>
+   PDF
+    </a>
+  
+          
+          
+          
+        </div>
+      </div>
+    
+  
+                            </div>
+                        </div>
+                        </div>
+
+                        <!-- <div id="talks" class="scroll-navbar"></div>
+                        <div class="flex items-center max-w-prose mx-auto gap-3 justify-center px-6 md:px-0">
+                            <svg class="w-8 h-8 flex-shrink-0 text-primary-600 dark:text-primary-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><path d="M224 160C224 107 267 64 320 64C370.3 64 411.6 102.7 415.7 152L360 152C346.7 152 336 162.7 336 176C336 189.3 346.7 200 360 200L416 200L416 248L360 248C346.7 248 336 258.7 336 272C336 285.3 346.7 296 360 296L415.7 296C411.6 345.3 370.4 384 320 384C267 384 224 341 224 288L224 160zM152 224C165.3 224 176 234.7 176 248L176 288C176 367.5 240.5 432 320 432C399.5 432 464 367.5 464 288L464 248C464 234.7 474.7 224 488 224C501.3 224 512 234.7 512 248L512 288C512 385.9 438.7 466.7 344 478.5L344 528L392 528C405.3 528 416 538.7 416 552C416 565.3 405.3 576 392 576L248 576C234.7 576 224 565.3 224 552C224 538.7 234.7 528 248 528L296 528L296 478.5C201.3 466.7 128 385.9 128 288L128 248C128 234.7 138.7 224 152 224z"/></svg>
+                            <div class="text-3xl font-bold text-gray-900 dark:text-white leading-none">Talks</div>
+                        </div>
+                        <div class="flex flex-col items-center px-6 pb-100">
+                            <div class="mt-16 sm:mt-20 container max-w-3xl w-full">
+                                <div class="flex flex-col space-y-3">
+                                    {{TALKS}}
+                                </div>
+                            </div>
+                        </div> -->
+
+                        <!-- <div class="pb-100"></div> -->
+
+                        <div id="projects" class="scroll-navbar"></div>
+                        <div class="flex items-center max-w-prose mx-auto gap-3 justify-center px-6 md:px-0">
+                            <svg class="w-8 h-8 flex-shrink-0 text-primary-600 dark:text-primary-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><!--!Font Awesome Free v7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M64 160C64 124.7 92.7 96 128 96L512 96C547.3 96 576 124.7 576 160L576 400L512 400L512 160L128 160L128 400L64 400L64 160zM0 467.2C0 456.6 8.6 448 19.2 448L620.8 448C631.4 448 640 456.6 640 467.2C640 509.6 605.6 544 563.2 544L76.8 544C34.4 544 0 509.6 0 467.2zM281 273L250 304L281 335C290.4 344.4 290.4 359.6 281 368.9C271.6 378.2 256.4 378.3 247.1 368.9L199.1 320.9C189.7 311.5 189.7 296.3 199.1 287L247.1 239C256.5 229.6 271.7 229.6 281 239C290.3 248.4 290.4 263.6 281 272.9zM393 239L441 287C450.4 296.4 450.4 311.6 441 320.9L393 368.9C383.6 378.3 368.4 378.3 359.1 368.9C349.8 359.5 349.7 344.3 359.1 335L390.1 304L359.1 273C349.7 263.6 349.7 248.4 359.1 239.1C368.5 229.8 383.7 229.7 393 239.1z"/></svg>
+                            <div class="text-3xl font-bold text-gray-900 dark:text-white leading-none">Projects</div>
+                        </div>
+                        <div class="flex flex-col items-center px-6">
+                            <div class="mt-16 sm:mt-20 container max-w-3xl w-full">
+                                <div class="flex flex-col space-y-3">
+                                    <div class="space-y-6">
+                                        
+                                        <div class="space-y-4">
+                                            <!-- Course 1 -->
+                                            
+    <a href="/inria.html" class="group h-full flex flex-col bg-gradient-to-br from-gray-100 to-gray-500 rounded-xl p-6 shadow-md hover:shadow-xl transition-all duration-300 border border-ddd backdrop-blur-md hover:scale-105 hover:-translate-y-1">
+      <div class="flex flex-col lg:flex-row gap-4">
+        <div class="flex items-center justify-center flex-shrink-0 lg:order-none order-first">
+          <img src="assets/inria-img.png" alt="Efficient Scheduling of Transformers using StarPU" class="h-28 w-64 lg:w-32 object-cover rounded">
+        </div>
+        <div class="flex-1">
+          <h4 class="font-bold text-gray-900 dark:text-white text-lg">Efficient Scheduling of Transformers using StarPU</h4>
+          <!-- <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">S1-M2</p> -->
+          <p class="text-gray-700 dark:text-gray-300 text-base mt-2">
+            </p>For the first half of my last year at ENS de Lyon, I worked as a research intern at Inria Bordeaux in the TOPAL team (HPC).</p> <p>By using the framework NNTile, I studied how to efficiently schedule the elementary operations of the attention layer of transformers.</p>
+          </p>
+        </div>
+      </div>
+    </a>
+    
+
+    <a href="/m2.html" class="group h-full flex flex-col bg-gradient-to-br from-gray-100 to-gray-500 rounded-xl p-6 shadow-md hover:shadow-xl transition-all duration-300 border border-ddd backdrop-blur-md hover:scale-105 hover:-translate-y-1">
+      <div class="flex flex-col lg:flex-row gap-4">
+        <div class="flex items-center justify-center flex-shrink-0 lg:order-none order-first">
+          <img src="assets/m2-img.png" alt="Optimizing Deep Learning Convolutions for Embedded Processors" class="h-28 w-64 lg:w-32 object-cover rounded">
+        </div>
+        <div class="flex-1">
+          <h4 class="font-bold text-gray-900 dark:text-white text-lg">Optimizing Deep Learning Convolutions for Embedded Processors</h4>
+          <!-- <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">S1-M2</p> -->
+          <p class="text-gray-700 dark:text-gray-300 text-base mt-2">
+            <p>During my second year of Master's degree, I worked as a research intern at LIP6 (Paris) for 5 months in the ALSOC team (embedded systems). </p><p>During this internship, I studied time and performance efficiency of the 4 most used methods for computing deep learning convolutions.</p>
+          </p>
+        </div>
+      </div>
+    </a>
+    
+
+    <a href="/m1.html" class="group h-full flex flex-col bg-gradient-to-br from-gray-100 to-gray-500 rounded-xl p-6 shadow-md hover:shadow-xl transition-all duration-300 border border-ddd backdrop-blur-md hover:scale-105 hover:-translate-y-1">
+      <div class="flex flex-col lg:flex-row gap-4">
+        <div class="flex items-center justify-center flex-shrink-0 lg:order-none order-first">
+          <img src="assets/m1-img.png" alt="Efficient Execution of Deep Learning Kernels on Long Vector Machines" class="h-28 w-64 lg:w-32 object-cover rounded">
+        </div>
+        <div class="flex-1">
+          <h4 class="font-bold text-gray-900 dark:text-white text-lg">Efficient Execution of Deep Learning Kernels on Long Vector Machines</h4>
+          <!-- <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">S1-M2</p> -->
+          <p class="text-gray-700 dark:text-gray-300 text-base mt-2">
+            <p>During my first year of Master's degree, I worked as a research intern at Barcelona Supercomputing Center (BSC) for 3 months in the SONAR team. </p><p>The goal of this internship was to optimize deep learning kernels targeting long vector architectures.</p>
+          </p>
+        </div>
+      </div>
+    </a>
+    
+
+    <a href="/drawcaml.html" class="group h-full flex flex-col bg-gradient-to-br from-gray-100 to-gray-500 rounded-xl p-6 shadow-md hover:shadow-xl transition-all duration-300 border border-ddd backdrop-blur-md hover:scale-105 hover:-translate-y-1">
+      <div class="flex flex-col lg:flex-row gap-4">
+        <div class="flex items-center justify-center flex-shrink-0 lg:order-none order-first">
+          <img src="assets/drawcaml.jpg" alt="DrawCaml: an Object-Oriented graphical module for OCaml" class="h-28 w-64 lg:w-32 object-cover rounded">
+        </div>
+        <div class="flex-1">
+          <h4 class="font-bold text-gray-900 dark:text-white text-lg">DrawCaml: an Object-Oriented graphical module for OCaml</h4>
+          <!-- <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">S1-M2</p> -->
+          <p class="text-gray-700 dark:text-gray-300 text-base mt-2">
+            <p>DrawCaml is a graphical module for OCaml, built for Unix architectures. It lays on X11 library, and is developed using C++.</p><p> Our motivation was to make easier the creation of graphical applications with OCaml, by using Object Oriented part of OCaml.</p>
+          </p>
+        </div>
+      </div>
+    </a>
+    
+
+    <a href="/l3.html" class="group h-full flex flex-col bg-gradient-to-br from-gray-100 to-gray-500 rounded-xl p-6 shadow-md hover:shadow-xl transition-all duration-300 border border-ddd backdrop-blur-md hover:scale-105 hover:-translate-y-1">
+      <div class="flex flex-col lg:flex-row gap-4">
+        <div class="flex items-center justify-center flex-shrink-0 lg:order-none order-first">
+          <img src="assets/imagePyramid.png" alt="Parallel Optimization of a Pyramidal Computer Vision Algorithm" class="h-28 w-64 lg:w-32 object-cover rounded">
+        </div>
+        <div class="flex-1">
+          <h4 class="font-bold text-gray-900 dark:text-white text-lg">Parallel Optimization of a Pyramidal Computer Vision Algorithm</h4>
+          <!-- <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">S1-M2</p> -->
+          <p class="text-gray-700 dark:text-gray-300 text-base mt-2">
+            <p>I spent my Bachelor's degree internship with the ALSOC team of LIP6 laboratory (Paris). There, I studied the optimisation of the parallel execution of pyramidal computer vision algorithms.</p><p> These algorithms are widely used in image processing and are known to be very costly, so their optimisation is critical.</p>
+          </p>
+        </div>
+      </div>
+    </a>
+    
+
+                                        </div>
+                                    </div>
+                                    <!-- {{PUBLICATIONS}} -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pb-50"></div>
+
+                        <div id="teaching" class="scroll-navbar"></div>
+                        <div class="flex items-center max-w-prose mx-auto gap-3 justify-center px-6 md:px-0">
+                            <svg class="w-8 h-8 flex-shrink-0 text-primary-600 dark:text-primary-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><!--!Font Awesome Free v7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M128 160C128 124.7 156.7 96 192 96L544 96C579.3 96 608 124.7 608 160L608 400L512 400L512 384C512 366.3 497.7 352 480 352L416 352C398.3 352 384 366.3 384 384L384 400L254.9 400C265.8 381.2 272 359.3 272 336C272 265.3 214.7 208 144 208C138.6 208 133.2 208.3 128 209L128 160zM333 512C327.9 487.8 316.7 465.9 300.9 448L608 448C608 483.3 579.3 512 544 512L333 512zM64 336C64 291.8 99.8 256 144 256C188.2 256 224 291.8 224 336C224 380.2 188.2 416 144 416C99.8 416 64 380.2 64 336zM0 544C0 491 43 448 96 448L192 448C245 448 288 491 288 544C288 561.7 273.7 576 256 576L32 576C14.3 576 0 561.7 0 544z"/></svg>
+                            <div class="text-3xl font-bold text-gray-900 dark:text-white leading-none">Teaching</div>
+                        </div>
+                        <div class="flex flex-col items-center px-6 pb-50">
+                            <div class="mt-16 sm:mt-20 container max-w-3xl w-full">
+                                <div class="flex flex-col space-y-3">
+                                    <div class="space-y-6">
+                                        <p class="prose text-gray-700 dark:text-gray-300 text-lg leading-relaxed">
+                                            Alongside my PhD, I contribute to teaching undergraduate and master’s-level courses at <a href="https://www.sorbonne-universite.fr/" target="_blank" rel="noopener" class="hover:text-primary-600 transition-colors">Sorbonne Université</a> (UFR d'Ingénierie 919).
+                                        </p>
+                                        
+                                        <div class="space-y-4">
+                                            <!-- Course 1 -->
+                                            <div class="group h-full flex flex-col bg-gradient-to-br from-gray-100 to-gray-500 rounded-xl p-6 shadow-md hover:shadow-xl transition-all duration-300 border border-ddd backdrop-blur-md">
+                                                <h4 class="font-bold text-gray-900 dark:text-white text-lg">UM5IN160 - Parallelism and Accelerators for Cluster Computing (S1-M2)</h4>
+                                                <!-- <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">S1-M2</p> -->
+                                                <p class="text-gray-700 dark:text-gray-300 text-base mt-2">
+                                                    This class introduces several programming paradigms for developing modern high-performance applications: 
+                                                    <span class="inline-block mt-2">SIMD (AVX-512, MIPP), OpenMP, MPI, Dataflow (StreamPU), GPU (CUDA)</span>
+                                                </p>
+                                            </div>
+
+                                            <!-- Course 2 -->
+                                            <div class="group h-full flex flex-col bg-gradient-to-br from-gray-100 to-gray-500 rounded-xl p-6 shadow-md hover:shadow-xl transition-all duration-300 border border-ddd backdrop-blur-md">
+                                                <h4 class="font-bold text-gray-900 dark:text-white text-lg">UL2IN005 - Discrete Mathematics (S1-L2)</h4>
+                                                <!-- <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">S1-L2</p> -->
+                                                <p class="text-gray-700 dark:text-gray-300 text-base mt-2">This course introduces the mathematical foundations underlying computer science, focusing on induction, computation models, automata and formal languages, program termination and recursion, and the basics of propositional logic.</p>
+                                            </div>
+
+                                            <div class="group h-full flex flex-col bg-gradient-to-br from-gray-100 to-gray-500 rounded-xl p-6 shadow-md hover:shadow-xl transition-all duration-300 border border-ddd backdrop-blur-md">
+                                                <h4 class="font-bold text-gray-900 dark:text-white text-lg">UL2IN003 - Introduction to algorithms (S2-L2)</h4>
+                                                <!-- <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">S1-L2</p> -->
+                                                <p class="text-gray-700 dark:text-gray-300 text-base mt-2">This course covers program termination and complexity analysis, along with fundamental data structures and techniques such as sorting algorithms, trees, and graphs.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- {{PUBLICATIONS}} -->
+                            </div>
+                        </div>
+                        </div>
+
+                        <!-- <div class="pb-100"></div> -->
+
+                    </div> <!-- right col -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="page-footer text-center text-sm text-slate-700 dark:text-slate-200">
+        &copy; 2025 Enrique Galvez. Inspired by Hugo Academic and academic webpages. 
+    </footer>
 
 </body>
 </html>
-    

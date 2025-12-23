@@ -1,38 +1,62 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Efficient Execution of Deep Learning Kernels on Long Vector Machines</title>
+
   <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+
+  <!-- Base styles -->
+  <link rel="stylesheet" href="newstyle.css">
   <link rel="stylesheet" href="project.css">
-  <link rel="stylesheet" href="style.css">
+
+  <!-- Markdown + code highlighting styles -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css">
   <link rel="stylesheet" href="https://unpkg.com/prismjs@1.24.1/themes/prism.css">
   <link rel="stylesheet" href="admon.css">
-  <!-- Google's Material Icons -->
+
+  <!-- Material icons -->
   <link href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css" rel="stylesheet">
-
-
 </head>
+
 <body>
 
   <!-- Navigation Bar -->
-  <nav class="navbar">
-    <div class="container">
-      <a class="navbar-brand" href="index.html">Enrique Galvez</a>
-      <ul class="navbar-links">
-        <li><a href="index.html#about">About</a></li>
-        <li><a href="index.html#projects">Projects</a></li>
-      </ul>
-    </div>
-  </nav>
-  
+  <div class="page-header sticky top-0 z-30">
+      <header id="site-header" class="header">
+          <nav class="max-w-7xl mx-auto navbar px-3 flex justify-start">
+              <div class="order-0 h-full">
+                  <a class="navbar-brand" href="/#" title="Enrique Galvez">Enrique Galvez</a>
+              </div>
+              <input id="nav-toggle" type="checkbox" class="hidden">
+              <label for="nav-toggle" class="order-3 cursor-pointer flex items-center lg:hidden text-[var(--color-header-fg)] lg:order-1">
+                  <svg id="show-button" class="h-6 fill-current block" viewBox="0 0 20 20">
+                      <title>Open Menu</title>
+                      <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0V0z"></path>
+                  </svg>
+                  <svg id="hide-button" class="h-6 fill-current hidden" viewBox="0 0 20 20">
+                      <title>Close Menu</title>
+                      <polygon points="11 9 22 9 22 11 11 11 11 22 9 22 9 11 -2 11 -2 9 9 9 9 -2 11 -2" transform="rotate(45 10 10)"></polygon>
+                  </svg>
+              </label>
+              <ul id="nav-menu" class="ms-auto navbar-nav order-3 hidden lg:flex w-full lg:order-1 lg:w-auto lg:space-x-2 lg:pb-0 xl:space-x-8 justify-start">
+                  <li class="nav-item"><a class="nav-link active" href="/#">Bio</a></li>
+                  <li class="nav-item"><a class="nav-link" href="/#publications">Publications</a></li>
+                  <!-- <li class="nav-item"><a class="nav-link" href="#talks">Talks</a></li> -->
+                  <!-- <li class="nav-item"><a class="nav-link" href="/experience/">Experience</a></li> -->
+                  <li class="nav-item"><a class="nav-link" href="/#projects">Projects</a></li>
+                  <li class="nav-item"><a class="nav-link" href="/#teaching">Teaching</a></li>
+              </ul>
+          </nav>
+      </header>
+  </div>
+
   <!-- Project Content -->
   <section class="project-content-section">
     <div class="project-container">
       <div id="project-content" class="markdown-body">
+
         <h1>Efficient Execution of Deep Learning Kernels on Long Vector Machines</h1>
 <p>During my first year of Master's degree, I worked as a research intern for 3 months at <a href="https://www.bsc.es/">Barcelona Supercomputing Center</a> (BSC). BSC is part of the <a href="https://www.european-processor-initiative.eu/">European Processor Initiative</a> (EPI) and the team I worked with was working on the conception of a RISC-V processor with a long SIMD vector length. In order to benchmark the new capacities of such a processor, efficient libraries should be designed for applications such as linear algebra or deep learning.</p>
 <p>The purpose of my work was to design efficient vectorized algorithms for deep learning kernels such as pooling, ReLU and batch normalization. The motivation of my internship was to contribute to Alexandre De Limas Santana's PHD, which is about the vectorization of the convolution operator for the long SIMD processor developped at BSC.</p>
@@ -57,6 +81,7 @@
 <h2>Special thanks</h2>
 <p>I am grateful to my supervisors Marc Casas and Alexandre De Limas Santana for allowing me to work on such an interesting project.</p>
 
+
       </div>
     </div>
   </section>
@@ -66,14 +91,8 @@
   </div>
 
   <!-- Footer -->
-  <footer class="footer">
-    <div class="bot-container">
-      <p>&copy; 2023 Enrique Galvez. All rights reserved.</p>
-      <div class="social-icons">
-        <a href="https://www.linkedin.com/in/enrique-galvez-b25817248" target="_blank">LinkedIn</a>
-        <a href="https://github.com/EnriqueGlv" target="_blank">GitHub</a>
-      </div>
-    </div>
+  <footer class="page-footer text-center text-sm text-slate-700 dark:text-slate-200">
+      &copy; 2025 Enrique Galvez. Inspired by Hugo Academic and academic webpages. 
   </footer>
 
   <!-- Scripts -->
@@ -82,7 +101,7 @@
     window.addEventListener("DOMContentLoaded", () => {
       new ClipboardJS(".markdown-it-code-copy");
     });
-    </script>
+  </script>
+
 </body>
 </html>
-    
