@@ -32,7 +32,7 @@
       <header id="site-header" class="header">
           <nav class="max-w-7xl mx-auto navbar px-3 flex justify-start">
               <div class="order-0 h-full">
-                  <a class="navbar-brand" href="/#" title="Enrique Galvez">Enrique Galvez</a>
+                  <a class="navbar-brand" href="index.html#" title="Enrique Galvez">Enrique Galvez</a>
               </div>
               <input id="nav-toggle" type="checkbox" class="hidden">
               <label for="nav-toggle" class="order-3 cursor-pointer flex items-center lg:hidden text-[var(--color-header-fg)] lg:order-1">
@@ -46,12 +46,12 @@
                   </svg>
               </label>
               <ul id="nav-menu" class="ms-auto navbar-nav order-3 hidden lg:flex w-full lg:order-1 lg:w-auto lg:space-x-2 lg:pb-0 xl:space-x-8 justify-start">
-                  <li class="nav-item"><a class="nav-link active" href="/#">Bio</a></li>
-                  <li class="nav-item"><a class="nav-link" href="/#publications">Publications</a></li>
+                  <li class="nav-item"><a class="nav-link active" href="index.html#">Bio</a></li>
+                  <li class="nav-item"><a class="nav-link" href="index.html#publications">Publications</a></li>
                   <!-- <li class="nav-item"><a class="nav-link" href="#talks">Talks</a></li> -->
                   <!-- <li class="nav-item"><a class="nav-link" href="/experience/">Experience</a></li> -->
-                  <li class="nav-item"><a class="nav-link" href="/#projects">Projects</a></li>
-                  <li class="nav-item"><a class="nav-link" href="/#teaching">Teaching</a></li>
+                  <li class="nav-item"><a class="nav-link" href="index.html#projects">Projects</a></li>
+                  <li class="nav-item"><a class="nav-link" href="index.html#teaching">Teaching</a></li>
               </ul>
           </nav>
       </header>
@@ -67,7 +67,7 @@
 <p>The purpose of my work was to study parallelism strategies for a pyramidal computer vision algorithm. The algorithm I worked on is inspired from Horn-Schunck algorithm, used by Maxime Millet for detecting meteors from a small satellite in his <a href="https://hal.sorbonne-universite.fr/THESES-SU/tel-05039986v1">PHD</a>.</p>
 <h2>The Pyramidal Computer Vision Algorithm</h2>
 <p>The computer vision algorithm I studied can be described in the following picture.</p>
-<p><img src="../assets/l3/pyramid.png" alt="pyramid"></p>
+<p><img src="assets/l3/pyramid.png" alt="pyramid"></p>
 <p>The algorithm can be decomposed in 2 phases:</p>
 <ul>
 <li><strong>Down-sampling</strong>: Image resolution is decreased by applying filters</li>
@@ -76,7 +76,7 @@
 <p>However, measures on the real algorithm showed that the stencil operator is responsible for almost 80% of the whole execution time.</p>
 <h2>Parallel Execution of the Stencil</h2>
 <p>In my internship report, I compare several strategies for executing the stencil in parallel. The first one is pretty straight-forward and consists in naive parallelism of the for loops involved in stencil computation. The most interesting one changes the order of the loops in order to <strong>improve data locality</strong> but at the cost of doing redundant computations referred to as &quot;shadow-zones&quot; shown in below picture.</p>
-<p><img src="../assets/l3/shadow-zones.png" alt="shadow"></p>
+<p><img src="assets/l3/shadow-zones.png" alt="shadow"></p>
 <p>A detailed explanation of my implementations as well as their evaluation is available in my <a href="contents/l3-rapport.pdf">internship report</a>.</p>
 <h2>Additionnal resources</h2>
 <p>If you want to learn more about my work, here are some useful resources:</p>

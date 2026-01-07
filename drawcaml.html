@@ -32,7 +32,7 @@
       <header id="site-header" class="header">
           <nav class="max-w-7xl mx-auto navbar px-3 flex justify-start">
               <div class="order-0 h-full">
-                  <a class="navbar-brand" href="/#" title="Enrique Galvez">Enrique Galvez</a>
+                  <a class="navbar-brand" href="index.html#" title="Enrique Galvez">Enrique Galvez</a>
               </div>
               <input id="nav-toggle" type="checkbox" class="hidden">
               <label for="nav-toggle" class="order-3 cursor-pointer flex items-center lg:hidden text-[var(--color-header-fg)] lg:order-1">
@@ -46,12 +46,12 @@
                   </svg>
               </label>
               <ul id="nav-menu" class="ms-auto navbar-nav order-3 hidden lg:flex w-full lg:order-1 lg:w-auto lg:space-x-2 lg:pb-0 xl:space-x-8 justify-start">
-                  <li class="nav-item"><a class="nav-link active" href="/#">Bio</a></li>
-                  <li class="nav-item"><a class="nav-link" href="/#publications">Publications</a></li>
+                  <li class="nav-item"><a class="nav-link active" href="index.html#">Bio</a></li>
+                  <li class="nav-item"><a class="nav-link" href="index.html#publications">Publications</a></li>
                   <!-- <li class="nav-item"><a class="nav-link" href="#talks">Talks</a></li> -->
                   <!-- <li class="nav-item"><a class="nav-link" href="/experience/">Experience</a></li> -->
-                  <li class="nav-item"><a class="nav-link" href="/#projects">Projects</a></li>
-                  <li class="nav-item"><a class="nav-link" href="/#teaching">Teaching</a></li>
+                  <li class="nav-item"><a class="nav-link" href="index.html#projects">Projects</a></li>
+                  <li class="nav-item"><a class="nav-link" href="index.html#teaching">Teaching</a></li>
               </ul>
           </nav>
       </header>
@@ -152,11 +152,11 @@ DrawCaml.waitForClose(window);;
 	</button>
 </div>
 <p>Creates the following result:</p>
-<p><img src="../assets/drawcaml/example.png" alt="drawcaml example"></p>
+<p><img src="assets/drawcaml/example.png" alt="drawcaml example"></p>
 <h2>Multi-threaded architecture</h2>
 <p>DrawCaml is built as a multi-threaded application, in order to allow the operating system to schedule the application. To be more specific, our design is based on 2 threads: one for the OCaml application and one for displaying the window using X11 code (C++). In order to allow Inter-Process Communication (IPC) between our 2 threads, we designed a protocol based on the queueing OCaml calls, wrapped in a C++ instance of the class <code>Action</code>.</p>
 <p>Our designed can be described by the following picture:</p>
-<p><img src="../assets/drawcaml/ipc.png" alt="IPC"></p>
+<p><img src="assets/drawcaml/ipc.png" alt="IPC"></p>
 <p>As described in the picture, IPC system allows us to send requests from OCaml (creating objects, requesting parameters, requesting objects) and get answers from C++ thread.</p>
 <h2>Event Handling</h2>
 <p>In order to support dynamic applications, handling user events such as keyboard and mouse inputs is necessary.</p>
@@ -202,7 +202,7 @@ done;;
 	</button>
 </div>
 <p>Under the hood, the OCaml function is given to the C++ thread which listens the events and when an event is caught, the function is executed by the C++ thread.</p>
-<p><img src="../assets/drawcaml/eventhandler.png" alt="event handler"></p>
+<p><img src="assets/drawcaml/eventhandler.png" alt="event handler"></p>
 <h2>Going Further</h2>
 <p>If you want to learn more about DrawCaml, you may take a look at the following ressources:</p>
 <ul>

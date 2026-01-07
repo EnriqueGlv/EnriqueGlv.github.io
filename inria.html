@@ -32,7 +32,7 @@
       <header id="site-header" class="header">
           <nav class="max-w-7xl mx-auto navbar px-3 flex justify-start">
               <div class="order-0 h-full">
-                  <a class="navbar-brand" href="/#" title="Enrique Galvez">Enrique Galvez</a>
+                  <a class="navbar-brand" href="index.html#" title="Enrique Galvez">Enrique Galvez</a>
               </div>
               <input id="nav-toggle" type="checkbox" class="hidden">
               <label for="nav-toggle" class="order-3 cursor-pointer flex items-center lg:hidden text-[var(--color-header-fg)] lg:order-1">
@@ -46,12 +46,12 @@
                   </svg>
               </label>
               <ul id="nav-menu" class="ms-auto navbar-nav order-3 hidden lg:flex w-full lg:order-1 lg:w-auto lg:space-x-2 lg:pb-0 xl:space-x-8 justify-start">
-                  <li class="nav-item"><a class="nav-link active" href="/#">Bio</a></li>
-                  <li class="nav-item"><a class="nav-link" href="/#publications">Publications</a></li>
+                  <li class="nav-item"><a class="nav-link active" href="index.html#">Bio</a></li>
+                  <li class="nav-item"><a class="nav-link" href="index.html#publications">Publications</a></li>
                   <!-- <li class="nav-item"><a class="nav-link" href="#talks">Talks</a></li> -->
                   <!-- <li class="nav-item"><a class="nav-link" href="/experience/">Experience</a></li> -->
-                  <li class="nav-item"><a class="nav-link" href="/#projects">Projects</a></li>
-                  <li class="nav-item"><a class="nav-link" href="/#teaching">Teaching</a></li>
+                  <li class="nav-item"><a class="nav-link" href="index.html#projects">Projects</a></li>
+                  <li class="nav-item"><a class="nav-link" href="index.html#teaching">Teaching</a></li>
               </ul>
           </nav>
       </header>
@@ -74,35 +74,35 @@ representations, and a <strong>decoder</strong> that generates the output sequen
 <p>OpenAI's GPT and Meta's Llama models are based on a decoder-only transformer structure.</p>
 </div>
 <p>A decoder-only transformer is composed of several parts described in Figure 1.</p>
-<p><img src="../assets/inria/transformer.png" alt="transf"></p>
+<p><img src="assets/inria/transformer.png" alt="transf"></p>
 <p>The first element of this block is the <strong>tokenizer</strong>, which transforms the text sequence into small pieces of information called tokens. Then, an <strong>embedding</strong> is computed to transform the text into numerical vectors. The embedding usually has good properties: if two words have a close meaning, the distance between their corresponding vector representation should be small. Modern networks also include at this step a <strong>positionnal encoding</strong> to keep track of the position of the token inside the sequence, considering that the meaning of a piece of text depends on its position in the text.</p>
 <p>The next part of the transformer structure is the <strong>multi-head self-attention</strong> layer. It splits the input into multiple “attention heads”, each performing scaled dot-product attention independently, enabling the model to capture diverse relationships and patterns in the data. Each attention head interprets its input vector as a query, key, value (Q, K, V) tuple in order to extract context- specific information by weighting V by an attention score computed using Q and K.</p>
 <p>This attention block is followed by a <strong>feed-forward network</strong>. The combination of the attention block and the feed-forward network is a Transformer Block, which is repeated N times to constitute the whole network. At the end of the network, linear and softmax layers are used to extract the output, which is usually a probability vector.</p>
 <h2>The scheduling problem for Deep Neural Networks</h2>
 <p>Because of the complexity of deep neural networks execution, finding an optimal scheduling for these tasks is a very active research question. A particular case of this pronlem targets distributed environments, which allow higher-scale computing capabilities but require a special attention at optimizing communication costs.</p>
-<p><img src="../assets/inria/datapar.png" alt="datapar"></p>
+<p><img src="assets/inria/datapar.png" alt="datapar"></p>
 <p>A first strategy used to train DNNs on a distributed environment is <strong>Data Parallelism</strong>, illustrated in Figure 2. This method consists in splitting the input in several batces, and run an entire step for a given batch on each device in parallel. Weights are then gathered to compute the model update that should stay the same in each device.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Distributed Data Parallelism (DDP) is the default strategy used by pytorch to run distributed training accross several devices like GPUs.</p>
 </div>
-<p><img src="../assets/inria/pipelinepar.png" alt="pipeline par"></p>
+<p><img src="assets/inria/pipelinepar.png" alt="pipeline par"></p>
 <p>Another parallelism strategy is <strong>Pipeline  Parallelism</strong>, described in Figure 3. Here, each device is in charge of executing one layer of the network for a given input batch. In this mode, the execution of layer <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>l</mi></mrow><annotation encoding="application/x-tex">l</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.69444em;"></span><span class="strut bottom" style="height:0.69444em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.01968em;">l</span></span></span></span> for a given batch cannot be executed before the execution of layer <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>l</mi><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">l-1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.69444em;"></span><span class="strut bottom" style="height:0.77777em;vertical-align:-0.08333em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.01968em;">l</span><span class="mbin">−</span><span class="mord mathrm">1</span></span></span></span> on this batch. Training also adds as dependencies the backward pass for previous batch, resulting in complex dependencies between pipeline tasks.</p>
-<p><img src="../assets/inria/tensorpar.png" alt="tensor par"></p>
+<p><img src="assets/inria/tensorpar.png" alt="tensor par"></p>
 <p>A third popular strategy is <strong>Tensor Parallelism</strong>, described in Figure 4. The idea of this strategy is to split the layers in several devices and compute for each layer of the network part of the result in each device. This approach is the more complex to implement because it involves complex dependencies for each split operation.</p>
 <div class="admonition summary">
 <p class="admonition-title">Task-based parallelism</p>
 <p>My work focused on another strategy, called <strong>task-based parallelism</strong>, described in the next session.</p>
 </div>
-<!-- ![seq par](../assets/inria/seqpar.png) -->
+<!-- ![seq par](assets/inria/seqpar.png) -->
 <h2>The tools StarPU and NNTile for scheduling DNNs</h2>
 <p>Previous strategies consider the scheduling problem as a global problem. Indeed, in previous approaches, scheduling is thought at the scale of the network. Another approach, referred to as <strong>task-based parallelism</strong>, consists in submitting atomic tasks for operations on small pieces of input and then use an external engine to schedule the tasks.</p>
 <p>This approach can be achieved by using a tool such as <a href="https://starpu.gitlabpages.inria.fr/">StarPU</a>, which provides an API to declare atomic operations, and allow their execution thanks to high-performance scheduling algorithms written by experts.</p>
-<p><img src="../assets/inria/starpu.png" alt="starpu"></p>
+<p><img src="assets/inria/starpu.png" alt="starpu"></p>
 <p>In order to study the execution of deep neural networks with a task-based parallelism strategy, I used the project <a href="https://github.com/nntile/nntile">NNTile</a> as a starting point for my work. NNTile is a deep learning library where each atomic operation (Add, GEMM, ReLU, copy, transpose...) is considered as a StarPU task which is submitted to StarPU's scheduler when the network is executed.</p>
 <h2>Achieving high performance scheduling for DNNs</h2>
 <p>Achieving high performance scheduling with a task-based parallelism strategy is quite a challenge because the scheduling is done without any global knowledge about the tasks to execute. However, some factors like <strong>task granularity</strong>, <strong>kernel fusion</strong> or <strong>communication overhead</strong> can be adjusted and have turned out to be critical in terms of performance.</p>
-<p><img src="../assets/inria/fuselinear.png" alt="fuse linear"></p>
+<p><img src="assets/inria/fuselinear.png" alt="fuse linear"></p>
 <p>As an example, kernel fusion can be used to optimize the execution of a DNN. In above picture, three tasks are submitted: GEMM, Add and ReLU. In a regular setup, the scheduler will choose how to schedule these tasks on pieces of the input. When the kernels are fused, these tasks are grouped in a single task for each piece of input, executed at once in a single computing unit. The benefits of kernel fusion are multiple: it improves data locality, reduces the cost of StarPU overhead and reduces the cost of inter-devices communications.</p>
 <p>By following a similar process at several levels of the network, I managed to observe some speedups against NNTile's implementations. The details of my work, including experiments and pseudo-code are available in my <a href="contents/inria-report.pdf">internship report</a>.</p>
 <h2>Additionnal resources</h2>
