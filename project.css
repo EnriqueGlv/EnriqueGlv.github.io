@@ -55,7 +55,7 @@ body {
 /* Media Queries for Smaller Screens */
 @media (max-width: 1000px) {
   .project-container {
-      width: 80%;
+      width: 100%;
       padding-left: 10px;
       padding-right: 10px;
   }
